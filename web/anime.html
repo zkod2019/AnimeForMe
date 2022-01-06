@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>anime</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="mycss.css" />
+        <script src="./html-include.js"></script>
+        <script src="./anime.js"></script>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="leftLayout">
+                <div class="__include" data-src="./nav.html"></div>
+            </div>
+            
+            <div class="midLayout">
+                <h3>Anime</h3>
+                <h5>All Anime</h5>
+                 <label for="sort-by">Sort:</label>
+                <select id="sort-by">
+                    <option value="alphabetically">Alphabetically</option>
+                    <option value="popularity">By Popularity</option>
+                </select>
+                <ul id="anime-list"></ul>
+                <div>
+                    <button id="prev-page">Previous Page</button>
+                    <button id="next-page">Next Page</button>
+                </div>
+                <ul id="anime-list"></ul>
+            </div>
+        
+             <div class="rightLayout">
+                 <div class="rightContent">
+                    <h3>right</h3> 
+                 </div>
+            </div>
+     
+        </div>
+    </body>
+</html>

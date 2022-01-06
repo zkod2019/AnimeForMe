@@ -1,0 +1,88 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 5, 2021, 11:32:05 PM
+    Author     : Zaya
+*/
+@import "//rsms.me/inter/inter.css";
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+html,
+body,
+main {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  display: flex;
+}
+
+main > section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main > section > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container{
+    width: 500px;
+    margin: 90px auto;
+}
+
+.signup-button,
+.login-button{
+    width: 50%;
+    float: left; 
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.form{
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-image:linear-gradient(to bottom, yellow, pink, lightskyblue);
+    border: 5px solid blue;
+    
+}
+
+.details{
+    display:flex;
+    justify-content: center;
+}
+
+.navigation{
+    position: fixed;
+    font-size: 12px;
+    color: #0F141A;
+     
+    float: left;
+    padding: 0px 5px ;
+    background-color: lightblue;
+    list-style-type: none;
+}
+
+.layout{
+    display: grid;
+    grid-template-columns: 270px auto 350px; 
+    margin: 0 auto;
+}
+
+.rightContent{
+    position: fixed;
+}
