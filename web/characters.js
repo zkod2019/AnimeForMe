@@ -46,7 +46,7 @@ function updateCharactersList() {
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/characters?page=${currentPage}`,
+      `https://api.jikan.moe/v4/top/characters?page=${currentPage}`,
       true
     );
   }
@@ -59,7 +59,11 @@ function updateCharactersList() {
     console.log(json.pagination);
 
     json.data.forEach((characters) => {
-      topCharactersAsListElements += `<li>${characters.name}</li>`;
+      topCharactersAsListElements += 
+                `<li>
+                    <img src="${characters.images.jpg.images_url}" />
+                    <h3>${characters.name}</h3>
+                </li>`;
     });
 
     nextPageBtn.style.display = !json.pagination.has_next_page
