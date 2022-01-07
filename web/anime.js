@@ -63,6 +63,20 @@ function updateAnimeList() {
                 `<li>
                     <img src="${anime.images.jpg.image_url}" />
                     <h3>${anime.title}</h3>
+                    ${anime.title ?
+                    `<details>
+                        <summary>Anime Info:</summary>
+                        Rank: ${anime.rank} <br>
+                        Score: ${anime.score} <br>
+                        Seasons: ${anime.season} <br>
+                        Episodes: ${anime.episodes} <br>
+                        Rating: ${anime.rating} <br>
+                        Status: ${anime.status} <br>
+                        Synopsis: ${anime.synopsis} <br>
+                        Background: ${anime.background} <br>
+                        Genre: ${anime.genres.name} <br>
+                    </details>` : ''
+                    }
                 </li>`;
     });
 

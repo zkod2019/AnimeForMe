@@ -61,8 +61,20 @@ function updateMangaList() {
     json.data.forEach((manga) => {
       topMangaAsListElements += 
                 `<li>
-                    <img src="${manga.images.jpg.images_url}" />
+                    <img src="${manga.images.jpg.image_url}" />
                     <h3>${manga.title}</h3>
+                    ${manga.chapters?
+                    `<details>
+                        <summary>Manga Info:</summary>
+                        Rank: ${manga.rank} <br>
+                        Score: ${manga.scored} <br>
+                        Volumes: ${manga.volumes} <br>
+                        Chapters: ${manga.chapters} <br>
+                        Synopsis: ${manga.synopsis} <br>
+                        Background: ${manga.background} <br>
+                        Genre: ${manga.genres.name} <br>
+                    </details>` : ''
+                    }
                 </li>`;
     });
 

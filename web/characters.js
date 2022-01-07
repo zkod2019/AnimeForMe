@@ -61,8 +61,14 @@ function updateCharactersList() {
     json.data.forEach((characters) => {
       topCharactersAsListElements += 
                 `<li>
-                    <img src="${characters.images.jpg.images_url}" />
+                    <img src="${characters.images.jpg.image_url}" />
                     <h3>${characters.name}</h3>
+                    ${characters.about?
+                    `<details>
+                        <summary>Character Info:</summary>
+                        ${characters.about}
+                    </details>` : ''
+                    }
                 </li>`;
     });
 
