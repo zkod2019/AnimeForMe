@@ -59,7 +59,7 @@ function updateCharactersList() {
     console.log(json.pagination);
 
     json.data.forEach((characters) => {
-      topCharactersAsListElements += `<li>${characters.title}</li>`;
+      topCharactersAsListElements += `<li>${characters.name}</li>`;
     });
 
     nextPageBtn.style.display = !json.pagination.has_next_page
