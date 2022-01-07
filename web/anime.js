@@ -59,7 +59,11 @@ function updateAnimeList() {
     console.log(json.pagination);
 
     json.data.forEach((anime) => {
-      topAnimeAsListElements += `<li>${anime.title}</li>`;
+      topAnimeAsListElements += 
+                `<li>
+                    <img src="${anime.images.jpg.image_url}" />
+                    <h3>${anime.title}</h3>
+                </li>`;
     });
 
     nextPageBtn.style.display = !json.pagination.has_next_page
