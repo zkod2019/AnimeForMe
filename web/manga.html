@@ -11,11 +11,35 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="mycss.css" />
         <script src="./html-include.js"></script>
+        <script src="./manga.js"></script>
     </head>
     <body>
-        <div>Manga</div>
+        <div class="layout">
+            <div class="leftLayout">
+                <div class="__include" data-src="./nav.html"></div>
+            </div>
+            
+            <div class="midLayout">
+                <h3>Manga</h3>
+                <h5>All Manga</h5>
+                 <label for="sort-by">Sort:</label>
+                <select id="sort-by">
+                    <option value="alphabetically">Alphabetically</option>
+                    <option value="popularity">By Popularity</option>
+                </select>
+                <ul id="manga-list"></ul>
+                <div>
+                    <button id="prev-page">Previous Page</button>
+                    <button id="next-page">Next Page</button>
+                </div>
+                <ul id="manga-list"></ul>
+            </div>
         
-       <div class="__include" data-src="./nav.html"></div>
-        
+             <div class="rightLayout">
+                 <div class="rightContent">
+                    <h3>right</h3> 
+                 </div>
+            </div>
+        </div>
     </body>
 </html>
