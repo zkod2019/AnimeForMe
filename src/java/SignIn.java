@@ -22,18 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Zaya
  */
-public class SignUpServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-
+public class SignIn extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -46,7 +35,7 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8"); // this was had "text/plain" before
+        response.setContentType("text/plain;charset=UTF-8"); // this was had "text/plain" before
         
         String username = null;
         String password = null;
@@ -58,6 +47,7 @@ public class SignUpServlet extends HttpServlet {
             bodyBuffer.append(line);
         }
         String body = bodyBuffer.toString();
+        log(body);
         String[] pairs = body.split("&");
         for (String pair : pairs) {
             String[] splitPair = pair.split("=");
@@ -83,34 +73,18 @@ public class SignUpServlet extends HttpServlet {
                 existenceCheckStmt.setString(1, username);
                 rs = existenceCheckStmt.executeQuery();
                 if (!rs.isBeforeFirst()) {
-                    // If did not find existing user
-                    insertStmt = conn.prepareStatement(
-                            "INSERT INTO Users(username, password) VALUES (?, ?)",
-                            ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE
-                    );
-                   
-                    insertStmt.setString(1, username);
-                    insertStmt.setString(2, password);
-                    insertStmt.executeUpdate();
-                    
-                    response.setStatus(200);
-                    response.sendRedirect(request.getContextPath() + "/home.html");
+                    response.setStatus(404);
+                    out.println("User Not Found.");
                 } else {
-                    response.setStatus(403);
-//                    String someMessage = "Error !";
-//                    PrintWriter uuu = response.getWriter();
-//                    uuu.print("<html><head>");
-//                    uuu.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
-//                    uuu.print("</head><body></body></html>");
-                   
-//                   PrintWriter uuu = response.getWriter();  
-//                    response.setContentType("text/html");  
-//                    uuu.println("<script type=\"text/javascript\">");  
-//                    uuu.println("alert('This user already exists, try a different name');");  
-//                    uuu.println("</script>");
-                   response.sendRedirect(request.getContextPath() + "/?errorType=username-taken");//userExist.html
-                    
-
+                    rs.next();
+                    String databasepassword = rs.getString("password");
+                    if (password.equals(databasepassword)){
+                        response.setStatus(200);
+                        out.println("Password is Correct.");
+                    }else{
+                        response.setStatus(401);
+                        out.println("Unauthorized.");
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -75,6 +75,7 @@ main > section > img {
     padding: 0px 5px ;
     background-color: lightblue;
     list-style-type: none;
+    height: 100%;
 }
 
 .layout{
@@ -83,6 +84,21 @@ main > section > img {
     margin: 0 auto;
 }
 
+.midLayout{
+    position:relative; left: -10px; top:2px;
+    
+}
+
 .rightContent{
     position: fixed;
+}
+
+
+.anime-list{
+    float: left;
+    position: relative;
+    margin-right: 20px;
+    font-family: Verdana,Arial;
+    font-size: 12px;
+    
 }

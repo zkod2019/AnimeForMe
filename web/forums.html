@@ -13,9 +13,21 @@ and open the template in the editor.
         <script src="./html-include.js"></script>
     </head>
     <body>
-        <div>Forums</div>
+        <div class="layout">
+            <div class="leftLayout">
+                <div class="__include" data-src="./nav.html"></div>
+            </div>
+            
+            <div class="midLayout">
+                <h3>Forums</h3>
+            </div>
         
-        <div class="__include" data-src="./nav.html"></div>
-        
+             <div class="rightLayout">
+                 <div class="rightContent">
+                    <h3>right</h3> 
+                 </div>
+            </div>
+     
+        </div>
     </body>
 </html>

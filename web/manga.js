@@ -61,18 +61,19 @@ function updateMangaList() {
     json.data.forEach((manga) => {
       topMangaAsListElements += 
                 `<li>
-                    <img src="${manga.images.jpg.image_url}" />
-                    <h3>${manga.title}</h3>
-                    ${manga.chapters?
+                    <img src="${manga.images.jpg.image_url}" 
+                        style="width: auto; height: 90px;"/>
+                    <h4>${manga.title}</h4>
+                    ${manga.volumes || manga.rank || manga.genres.length>0 || manga.score || manga.background || manga.synopsis || manga.chapters?
                     `<details>
                         <summary>Manga Info:</summary>
-                        Rank: ${manga.rank} <br>
-                        Score: ${manga.scored} <br>
-                        Volumes: ${manga.volumes} <br>
-                        Chapters: ${manga.chapters} <br>
-                        Synopsis: ${manga.synopsis} <br>
-                        Background: ${manga.background} <br>
-                        Genre: ${manga.genres.name} <br>
+                        ${manga.rank? `Rank: ${manga.rank} <br> ` : ''}
+                        ${manga.score? `Score: ${manga.scored} <br>` : ''}
+                        ${manga.volumes? `Volumes: ${manga.volumes} <br>` : ''}
+                        ${manga.chapters? `Chapters: ${manga.chapters} <br>` : ''}
+                        ${manga.synopsis? `Synopsis: ${manga.synopsis} <br>` : ''}
+                        ${manga.background? `Background: ${manga.background} <br>` : ''}
+                        ${manga.genres.length>0? `Genre: ${manga.genres[0].name} <br>` : ''}
                     </details>` : ''
                     }
                 </li>`;

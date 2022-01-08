@@ -62,7 +62,7 @@ function updateCharactersList() {
       topCharactersAsListElements += 
                 `<li>
                     <img src="${characters.images.jpg.image_url}" />
-                    <h3>${characters.name}</h3>
+                    <h4>${characters.name}</h4>
                     ${characters.about?
                     `<details>
                         <summary>Character Info:</summary>

@@ -61,20 +61,21 @@ function updateAnimeList() {
     json.data.forEach((anime) => {
       topAnimeAsListElements += 
                 `<li>
-                    <img src="${anime.images.jpg.image_url}" />
-                    <h3>${anime.title}</h3>
-                    ${anime.title ?
+                    <img src="${anime.images.jpg.image_url}" 
+                        style="width: auto; height: 90px;" >
+                    <h4>${anime.title}</h4>
+                    ${anime.rank || anime.genres.length>0 || anime.background || anime.synopsis || anime.status || anime.rating || anime.episodes ||anime.score || anime.season ?
                     `<details>
                         <summary>Anime Info:</summary>
-                        Rank: ${anime.rank} <br>
-                        Score: ${anime.score} <br>
-                        Seasons: ${anime.season} <br>
-                        Episodes: ${anime.episodes} <br>
-                        Rating: ${anime.rating} <br>
-                        Status: ${anime.status} <br>
-                        Synopsis: ${anime.synopsis} <br>
-                        Background: ${anime.background} <br>
-                        Genre: ${anime.genres.name} <br>
+                        ${anime.rank? `Rank: ${anime.rank} <br>` : ''}
+                        ${anime.score? `Score: ${anime.score} <br>` : ''}
+                        ${anime.season? `Seasons: ${anime.season} <br>` : ''}
+                        ${anime.episodes? `Episodes: ${anime.episodes} <br>` : ''}
+                        ${anime.rating? `Rating: ${anime.rating} <br>` : ''}
+                        ${anime.status? `Status: ${anime.status} <br>` : ''}
+                        ${anime.synopsis? `Synopsis: ${anime.synopsis} <br>` : ''}
+                        ${anime.background? `Background: ${anime.background} <br>` : ''}
+                        ${anime.genres.length>0? `Genre: ${anime.genres[0].name} <br>` : ''}
                     </details>` : ''
                     }
                 </li>`;

@@ -11,7 +11,8 @@ and open the template in the editor.
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="stylesheet" href="mycss.css" />
         <script src="./client-error.js"></script>
-        <script src="/html-include.js"></script>
+        <script src="./html-include.js"></script>
+        <script src="./index.js"></script>
         <title>AnimeForMe</title>
     
     </head>
@@ -25,7 +26,7 @@ and open the template in the editor.
             <section>
             <div class="container">
                 <div class="signup-button">Sign Up</div>
-                <div class="login-button">Login</div>
+               
                 
                 <div class="signup">
                     <form action="./SignUpServlet" method="POST" class="form">
@@ -41,13 +42,14 @@ and open the template in the editor.
              
                 </div>
                 
+                 <div class="login-button">Login</div>
                 <div class="login">
-                    <form action="welcome.html" method="POST" class="form">
+                    <form id="signInForm" method="POST" class="form">
                     <label for="TC">Username</label>
-                    <input type="text" id="userName" name="userName" required><br>
+                    <input type="text" id="signInUserName" name="userName" required><br>
                     <label for="TC">Password</label>
-                    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required><br>
-                    
+                    <input type="password" id="signInPassword" name="psw" required><br>
+                    <p id="errorMessage"> </p>
                     <input type="submit"><input type="reset">
             
                     </form>
