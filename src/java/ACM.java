@@ -51,15 +51,35 @@ public class ACM extends HttpServlet {
 
         try {
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
-            if (option.equals("manga")) {
-                getStatement = conn.prepareStatement("SELECT * FROM mangarelation WHERE username = (?)");
-            } else if (option.equals("anime")) {
-                getStatement = conn.prepareStatement("SELECT * FROM animerelation WHERE username = (?)");
-            }else if (option.equals("characters")) {
-                getStatement = conn.prepareStatement("SELECT * FROM characterrelation WHERE username = (?)");
-            }
+
+            getStatement = conn.prepareStatement(
+                    String.format("SELECT * FROM %srelation WHERE username = (?)", option),
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE
+            );
+
             getStatement.setString(1, username);
             userField = getStatement.executeQuery();
+            
+            String results = "[";
+            boolean isEmpty =! userField.isBeforeFirst();
+            while (userField.next()) {
+                results += String.format(
+                        "{\"username\": \"%s\", \"%sId\": %d, \"status\": %d},",
+                        userField.getString("username"),
+                        option,
+                        userField.getInt(String.format("%sId", option)),
+                        userField.getInt("status")
+                );
+            }
+            
+            if (!isEmpty) {
+                results = results.substring(0, results.length() - 1);
+            }
+            
+            results += "]";
+            
+            response.setStatus(200);
+            out.println(String.format("{\"data\": %s}", results));
         } catch (SQLException ex) {
             Logger.getLogger(ACM.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
