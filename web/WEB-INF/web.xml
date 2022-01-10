@@ -5,24 +5,24 @@
         <servlet-class>SignUpServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Data</servlet-name>
-        <servlet-class>Data</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SignIn</servlet-name>
         <servlet-class>SignIn</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ACM</servlet-name>
+        <servlet-class>ACM</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Data</servlet-name>
-        <url-pattern>/Data</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ACM</servlet-name>
+        <url-pattern>/ACM</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

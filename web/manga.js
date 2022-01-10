@@ -33,6 +33,14 @@ window.onload = function () {
   };
 };
 
+function statusChangeListener() {
+    var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=${this.event.target.value.toLowerCase() === "reading" ? "active" :this.event.target.value.toLowerCase() }`;
+    console.log(url);
+    fetch(url, {
+        method: 'PUT',
+    }).then(response => response.text()).then(console.log)
+
+}
 function updateMangaList() {
   const req = new XMLHttpRequest();
   req.responseType = "json";
@@ -57,6 +65,7 @@ function updateMangaList() {
 
     console.log(json.data);
     console.log(json.pagination);
+    
 
     json.data.forEach((manga) => {
       topMangaAsListElements += 
@@ -64,6 +73,12 @@ function updateMangaList() {
                     <img src="${manga.images.jpg.image_url}" 
                         style="width: auto; height: 90px;"/>
                     <h4>${manga.title}</h4>
+                    <select onchange="statusChangeListener()" style="float:right;" data-id="${manga.mal_id}">
+                        <option value="" disabled selected>Add to list</option>
+                        <option>Completed</option>
+                        <option>Reading</option>
+                        <option>Paused</option>
+                    </select>
                     ${manga.volumes || manga.rank || manga.genres.length>0 || manga.score || manga.background || manga.synopsis || manga.chapters?
                     `<details>
                         <summary>Manga Info:</summary>
@@ -76,6 +91,7 @@ function updateMangaList() {
                         ${manga.genres.length>0? `Genre: ${manga.genres[0].name} <br>` : ''}
                     </details>` : ''
                     }
+                    <br><br>
                 </li>`;
     });
 
