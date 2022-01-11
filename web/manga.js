@@ -34,13 +34,13 @@ window.onload = function () {
 };
 
 function statusChangeListener() {
-    var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=${this.event.target.value.toLowerCase() === "reading" ? "active" :this.event.target.value.toLowerCase() }`;
+    var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=0`;
     console.log(url);
     fetch(url, {
         method: 'PUT',
-    }).then(response => response.text()).then(console.log)
-
+    }).then(response => response.text()).then(console.log);
 }
+
 function updateMangaList() {
   const req = new XMLHttpRequest();
   req.responseType = "json";
@@ -73,12 +73,8 @@ function updateMangaList() {
                     <img src="${manga.images.jpg.image_url}" 
                         style="width: auto; height: 90px;"/>
                     <h4>${manga.title}</h4>
-                    <select onchange="statusChangeListener()" style="float:right;" data-id="${manga.mal_id}">
-                        <option value="" disabled selected>Add to list</option>
-                        <option>Completed</option>
-                        <option>Reading</option>
-                        <option>Paused</option>
-                    </select>
+                    <button onclick="statusChangeListener()" style="float:right;" data-id="${manga.mal_id}"> Add to My List
+                    </button>
                     ${manga.volumes || manga.rank || manga.genres.length>0 || manga.score || manga.background || manga.synopsis || manga.chapters?
                     `<details>
                         <summary>Manga Info:</summary>

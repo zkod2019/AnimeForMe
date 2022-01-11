@@ -23,19 +23,19 @@ import javax.servlet.http.HttpServletResponse;
  * @author Zaya
  */
 public class ACM extends HttpServlet {
-    private int statusStringToInt(String status) {
-        if (status.equals("none")) {
-            return 0;
-        } else if (status.equals("completed")) {
-            return 1;
-        } else if (status.equals("active")){
-            return 2;
-        }else if (status.equals("paused")){
-            return 3;
-        }else{
-            return -1;
-        }
-    }
+//    private int statusStringToInt(String status) {
+//        if (status.equals("none")) {
+//            return 0;
+//        } else if (status.equals("completed")) {
+//            return 1;
+//        } else if (status.equals("active")){
+//            return 2;
+//        }else if (status.equals("paused")){
+//            return 3;
+//        }else{
+//            return -1;
+//        }
+//    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -97,7 +97,6 @@ public class ACM extends HttpServlet {
         String username = request.getParameter("username");
         
         log(status);
-        log(String.valueOf(this.statusStringToInt(status)));
         log("hellooo");
 
         Connection conn = null;
@@ -114,12 +113,39 @@ public class ACM extends HttpServlet {
                 insertStatement = conn.prepareStatement("INSERT INTO mangarelation(username, mangaId, status) VALUES ((?), (?), (?))");
                 insertStatement.setString(1, username);
                 insertStatement.setInt(2, mangaId);
-                insertStatement.setInt(3, this.statusStringToInt(status));
+                insertStatement.setInt(3, Integer.parseInt(status));
                 
                 insertStatement.executeUpdate();
                 
                 response.setStatus(200);
-                out.println("All good.");
+                out.println("Manga added.");
+            }else if (option.equals("anime")) {
+                log("anime option");
+                int animeId = Integer.parseInt(request.getParameter("animeId"));
+                
+
+                insertStatement = conn.prepareStatement("INSERT INTO animerelation(username, animeId, status) VALUES ((?), (?), (?))");
+                insertStatement.setString(1, username);
+                insertStatement.setInt(2, animeId);
+                insertStatement.setInt(3, Integer.parseInt(status));
+                
+                insertStatement.executeUpdate();
+                
+                response.setStatus(200);
+                out.println("Anime added.");
+            }else if (option.equals("characters")) {
+                log("characters option");
+                int characterId = Integer.parseInt(request.getParameter("characterId"));
+                
+
+                insertStatement = conn.prepareStatement("INSERT INTO charactersrelation(username, characterId) VALUES ((?), (?))");
+                insertStatement.setString(1, username);
+                insertStatement.setInt(2, characterId);
+                
+                insertStatement.executeUpdate();
+                
+                response.setStatus(200);
+                out.println("Character added.");
             }
             
         } catch (SQLException ex) {
@@ -128,6 +154,62 @@ public class ACM extends HttpServlet {
             out.close();
             if (insertStatement != null) {
                 try {insertStatement.close();} catch (SQLException e) {/*Ignore*/}
+            }
+        }
+    }
+    
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();     
+        
+        String option = request.getParameter("option");
+        String status = request.getParameter("status");
+        String username = request.getParameter("username");
+        
+        log(status);
+        log("; — ;");
+
+        Connection conn = null;
+        PreparedStatement updateStatement = null;
+
+        try  {
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
+
+            if (option.equals("manga")) {
+                log("manga option");
+                int mangaId = Integer.parseInt(request.getParameter("mangaId"));
+                
+
+                updateStatement = conn.prepareStatement("UPDATE mangarelation SET status=(?) WHERE username=(?) AND mangaId = (?) ");
+                updateStatement.setInt(1, Integer.parseInt(status));
+                updateStatement.setString(2, username);
+                updateStatement.setInt(3, mangaId);
+                updateStatement.executeUpdate();
+                
+                response.setStatus(200);
+                out.println("Manga status updated.");
+            }else if(option.equals("anime")) {
+                log("anime option");
+                int animeId = Integer.parseInt(request.getParameter("animeId"));
+                
+
+                updateStatement = conn.prepareStatement("UPDATE animerelation SET status=(?) WHERE username=(?) AND animeId = (?) ");
+                updateStatement.setInt(1, Integer.parseInt(status));
+                updateStatement.setString(2, username);
+                updateStatement.setInt(3, animeId);
+                updateStatement.executeUpdate();
+                
+                response.setStatus(200);
+                out.println("Anime status updated.");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ACM.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            out.close();
+            if (updateStatement != null) {
+                try {updateStatement.close();} catch (SQLException e) {/*Ignore*/}
             }
         }
     }

@@ -33,6 +33,14 @@ window.onload = function () {
   };
 };
 
+function statusChangeListener() {
+    var url = `./ACM?option=anime&animeId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=0`;
+    console.log(url);
+    fetch(url, {
+        method: 'PUT'
+    }).then(response => response.text()).then(console.log);
+}
+
 function updateAnimeList() {
   const req = new XMLHttpRequest();
   req.responseType = "json";
@@ -64,6 +72,8 @@ function updateAnimeList() {
                     <img src="${anime.images.jpg.image_url}" 
                         style="width: auto; height: 90px;" >
                     <h4>${anime.title}</h4>
+                    <button onclick="statusChangeListener()" style="float:right;" data-id="${anime.mal_id}"> Add to My List
+                    </button>
                     ${anime.rank || anime.genres.length>0 || anime.background || anime.synopsis || anime.status || anime.rating || anime.episodes ||anime.score || anime.season ?
                     `<details>
                         <summary>Anime Info:</summary>
