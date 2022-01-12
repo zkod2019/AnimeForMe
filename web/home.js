@@ -16,10 +16,10 @@ window.onload = function(){
                 myMangaList.innerHTML += `<li>
                     <h4>${mangaHeading}</h4>
                     <select onchange="mangaStatusChange()" style="float:right;" data-id="${pair.mangaId}">
-                        <option value=0>Empty</option>
-                        <option value=1>Completed</option>
-                        <option value=2>Reading</option>
-                        <option value=3>Paused</option>
+                        <option value=0 ${pair.status === 0 ? 'selected' : ''}>Empty</option>
+                        <option value=1 ${pair.status === 1 ? 'selected' : ''}>Completed</option>
+                        <option value=2  ${pair.status === 2 ? 'selected' : ''}>Reading</option>
+                        <option value=3 ${pair.status === 3 ? 'selected' : ''}>Paused</option>
                     </select>
                 </li>`;
             });
@@ -30,17 +30,17 @@ window.onload = function(){
                 myAnimeList.innerHTML += `<li>
                     <h4>${animeHeading}</h4>
                     <select onchange="animeStatusChange()" style="float:right;" data-id="${pair.animeId}">
-                        <option value=0>Empty</option>
-                        <option value=1>Completed</option>
-                        <option value=2>Watching</option>
-                        <option value=3>Paused</option>
+                        <option value=0 ${pair.status === 0 ? 'selected' : ''}>Empty</option>
+                        <option value=1 ${pair.status === 1 ? 'selected' : ''}>Completed</option>
+                        <option value=2 ${pair.status === 2 ? 'selected' : ''}>Watching</option>
+                        <option value=3 ${pair.status === 3 ? 'selected' : ''}>Paused</option>
                     </select>
                 </li>`;
             });
         });
         fetch(`./ACM?username=${userName}&option=characters`).then(response => response.json()).then(json => {
             json.data.forEach(async pair => {
-                var charactersHeading = (await (await fetch(`https://api.jikan.moe/v4/characters/${pair.characterId}`)).json()).data.title;
+                var charactersHeading = (await (await fetch(`https://api.jikan.moe/v4/characters/${pair.characterId}`)).json()).data.name;
                 myCharactersList.innerHTML += `<li>
                     <h4>${charactersHeading}</h4>
                 </li>`;
@@ -58,7 +58,7 @@ function mangaStatusChange() {
          };
 
 function animeStatusChange() {
-        var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=${this.event.target.value}`;
+        var url = `./ACM?option=anime&animeId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=${this.event.target.value}`;
             console.log(url);
             fetch(url, {
                 method: 'POST'

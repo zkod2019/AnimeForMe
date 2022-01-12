@@ -63,13 +63,20 @@ public class ACM extends HttpServlet {
             String results = "[";
             boolean isEmpty =! userField.isBeforeFirst();
             while (userField.next()) {
-                results += String.format(
+                if (option.equals("characters")){
+                    results += String.format(
+                        "{\"username\": \"%s\", \"characterId\": %d},",
+                        userField.getString("username"), userField.getInt("characterId")
+                    );
+                }else if (option.equals("anime") || option.equals("manga")){
+                    results += String.format(
                         "{\"username\": \"%s\", \"%sId\": %d, \"status\": %d},",
                         userField.getString("username"),
                         option,
                         userField.getInt(String.format("%sId", option)),
                         userField.getInt("status")
-                );
+                    );
+                }
             }
             
             if (!isEmpty) {
@@ -105,47 +112,41 @@ public class ACM extends HttpServlet {
         try  {
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
 
-            if (option.equals("manga")) {
-                log("manga option");
-                int mangaId = Integer.parseInt(request.getParameter("mangaId"));
-                
-
-                insertStatement = conn.prepareStatement("INSERT INTO mangarelation(username, mangaId, status) VALUES ((?), (?), (?))");
-                insertStatement.setString(1, username);
-                insertStatement.setInt(2, mangaId);
-                insertStatement.setInt(3, Integer.parseInt(status));
-                
-                insertStatement.executeUpdate();
-                
-                response.setStatus(200);
-                out.println("Manga added.");
-            }else if (option.equals("anime")) {
-                log("anime option");
-                int animeId = Integer.parseInt(request.getParameter("animeId"));
-                
-
-                insertStatement = conn.prepareStatement("INSERT INTO animerelation(username, animeId, status) VALUES ((?), (?), (?))");
-                insertStatement.setString(1, username);
-                insertStatement.setInt(2, animeId);
-                insertStatement.setInt(3, Integer.parseInt(status));
-                
-                insertStatement.executeUpdate();
-                
-                response.setStatus(200);
-                out.println("Anime added.");
-            }else if (option.equals("characters")) {
-                log("characters option");
-                int characterId = Integer.parseInt(request.getParameter("characterId"));
-                
-
-                insertStatement = conn.prepareStatement("INSERT INTO charactersrelation(username, characterId) VALUES ((?), (?))");
-                insertStatement.setString(1, username);
-                insertStatement.setInt(2, characterId);
-                
-                insertStatement.executeUpdate();
-                
-                response.setStatus(200);
-                out.println("Character added.");
+            switch (option) {
+                case "manga":
+                    log("manga option");
+                    int mangaId = Integer.parseInt(request.getParameter("mangaId"));
+                    insertStatement = conn.prepareStatement("INSERT INTO mangarelation(username, mangaId, status) VALUES ((?), (?), (?))");
+                    insertStatement.setString(1, username);
+                    insertStatement.setInt(2, mangaId);
+                    insertStatement.setInt(3, Integer.parseInt(status));
+                    insertStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Manga added.");
+                    break;
+                case "anime":
+                    log("anime option");
+                    int animeId = Integer.parseInt(request.getParameter("animeId"));
+                    insertStatement = conn.prepareStatement("INSERT INTO animerelation(username, animeId, status) VALUES ((?), (?), (?))");
+                    insertStatement.setString(1, username);
+                    insertStatement.setInt(2, animeId);
+                    insertStatement.setInt(3, Integer.parseInt(status));
+                    insertStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Anime added.");
+                    break;
+                case "characters":
+                    log("characters option");
+                    int characterId = Integer.parseInt(request.getParameter("characterId"));
+                    insertStatement = conn.prepareStatement("INSERT INTO charactersrelation(username, characterId) VALUES ((?), (?))");
+                    insertStatement.setString(1, username);
+                    insertStatement.setInt(2, characterId);
+                    insertStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Character added.");
+                    break;
+                default:
+                    break;
             }
             
         } catch (SQLException ex) {
