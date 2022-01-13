@@ -73,9 +73,30 @@ main > section > img {
      
     float: left;
     padding: 0px 5px ;
-    background-color: lightblue;
-    list-style-type: none;
+    background-color: white;
     height: 100%;
+}
+
+.navigation a {
+    float: left;
+    display: block;
+    color: #0F141A;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navigation > button {
+    position:absolute;
+    bottom: 5%;
+    left: 20%;
+}
+
+.navigation a:hover {
+  background-color: lightpink;
+  color: hotpink;
+  font-weight: bold;
 }
 
 .layout{
