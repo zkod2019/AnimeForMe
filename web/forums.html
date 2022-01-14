@@ -11,7 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="mycss.css" />
         <script src="./html-include.js"></script>
-    </head>
+        <script src="./forums.js"></script>
+            </head>
     <body>
         <div class="layout">
             <div class="leftLayout">
@@ -19,13 +20,36 @@ and open the template in the editor.
             </div>
             
             <div class="midLayout">
-                <h3>Forums</h3>
+                <h3 id="title">Forums</h3>
+                <form id="new-post-form">
+                    <textarea id="post-content"></textarea>
+                    <button type="submit">Create</button>
+                </form>
+                <ul type="none" id="posts-list"></ul>
             </div>
         
              <div class="rightLayout">
                  <div class="rightContent">
-                    <div style="width:500px;height:100px;border:1px solid #000;">
+                    <div style="width:700px;border:1px solid #000;">
                         <h5>My Forums</h5>
+                        <ul id="my-forums-list"></ul>
+                        <div>
+                            <button id="my-prev-page">Previous Page</button>
+                            <button id="my-next-page">Next Page</button>
+                        </div>
+                    </div>
+                     <div style="width:500px;height:100px;border:1px solid #000;">
+                        <h5>All Forums</h5>
+                        <label for="sort-by">Sort:</label>
+                        <select id="sort-by">
+                            <option value="alphabetically">Alphabetically</option>
+                            <option value="popularity">By Popularity</option>
+                        </select>
+                        <ul id="all-forums-list"></ul>
+                        <div>
+                            <button id="prev-page">Previous Page</button>
+                            <button id="next-page">Next Page</button>
+                        </div>
                     </div>
                  </div>
             </div>

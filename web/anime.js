@@ -48,7 +48,7 @@ function updateAnimeList() {
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/anime?order_by=title&page=${currentPage}`,
+      `https://api.jikan.moe/v4/anime?sfw=true&order_by=title&page=${currentPage}`,
       true
     );
   } else if (sortSelect.value === "popularity") {

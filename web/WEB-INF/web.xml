@@ -12,6 +12,14 @@
         <servlet-name>ACM</servlet-name>
         <servlet-class>ACM</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Forums</servlet-name>
+        <servlet-class>Forums</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Posts</servlet-name>
+        <servlet-class>Posts</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ACM</servlet-name>
         <url-pattern>/ACM</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Forums</servlet-name>
+        <url-pattern>/Forums</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Posts</servlet-name>
+        <url-pattern>/Posts</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

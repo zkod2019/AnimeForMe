@@ -41,7 +41,6 @@ main > section > img {
 }
 
 .container{
-    width: 500px;
     margin: 90px auto;
 }
 
@@ -111,7 +110,7 @@ main > section > img {
 }
 
 .rightContent{
-    position: fixed;
+    
 }
 
 
@@ -122,4 +121,16 @@ main > section > img {
     font-family: Verdana,Arial;
     font-size: 12px;
     
+}
+
+#all-forums-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    list-style: none;
+}
+
+#all-forums-list li {
+    width: 50%;
+    width: fit-content;
 }
