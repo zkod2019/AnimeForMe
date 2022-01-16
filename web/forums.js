@@ -19,7 +19,7 @@ let currentlySelectedForumOption = null;
 
 window.onload = function () {
     if (!sessionStorage.getItem("userName")) {
-        window.location = "./"
+        window.location = "./";
     }
   
   
@@ -152,7 +152,7 @@ async function updateCurrentForumPosts(targetId, isAnime) {
             forumPostsList.innerHTML += `<li>
                 <p>${post.content}</p>
             <small>${post.authorName}</small>
-            </li>`
+            </li>` 
         });
     }
     

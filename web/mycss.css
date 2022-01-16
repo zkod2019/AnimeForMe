@@ -100,7 +100,7 @@ main > section > img {
 
 .layout{
     display: grid;
-    grid-template-columns: 270px auto 350px; 
+    grid-template-columns: 270px auto 450px; 
     margin: 0 auto;
 }
 
