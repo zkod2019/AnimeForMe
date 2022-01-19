@@ -16,7 +16,22 @@ window.addEventListener("load", function () {
             request.responseText,
             "text/html"
           );
-          include.parentElement.replaceChild(tmpDoc.body.firstChild, include);
+
+          // Add any elements that would've gone into the <head>
+          [...tmpDoc.head.children].forEach((child) => {
+            window.document.head.appendChild(child);
+          });
+
+          // Add the other elements
+          let firstEl = include.parentElement.replaceChild(
+            tmpDoc.body.firstChild,
+            include
+          );
+          if (tmpDoc.body.children.length > 1) {
+            [...tmpDoc.body.children].slice(1).forEach((child) => {
+              firstEl.insertAdjacentElement("afterend", child);
+            });
+          }
         }
       };
 
