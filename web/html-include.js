@@ -9,29 +9,13 @@ window.addEventListener("load", function () {
       const request = new XMLHttpRequest();
       request.open("GET", includeSrc, true);
 
-      const parser = new DOMParser();
       request.onload = function () {
         if (request.status == 200) {
-          const tmpDoc = parser.parseFromString(
-            request.responseText,
-            "text/html"
-          );
-
-          // Add any elements that would've gone into the <head>
-          [...tmpDoc.head.children].forEach((child) => {
-            window.document.head.appendChild(child);
-          });
-
-          // Add the other elements
-          let firstEl = include.parentElement.replaceChild(
-            tmpDoc.body.firstChild,
-            include
-          );
-          if (tmpDoc.body.children.length > 1) {
-            [...tmpDoc.body.children].slice(1).forEach((child) => {
-              firstEl.insertAdjacentElement("afterend", child);
-            });
-          }
+          const frag = document
+            .createRange()
+            .createContextualFragment(request.responseText);
+          console.log(frag);
+          include.parentElement.replaceChild(frag, include);
         }
       };
 

@@ -5,50 +5,48 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>animeforme</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="mycss.css" />
-        <script src="./html-include.js"></script>
-        <script src="./characters.js"></script>
-    </head>
-   <body>
-        <div class="layout">
-            <div class="leftLayout">
-                <div class="__include" data-src="./nav.html"></div>
-            </div>
-            
-            <div class="midLayout">
-                <h3><a href="characters.html">Characters</a></h3>
-                <h5>All Characters</h5>
-                 <label for="sort-by">Sort:</label>
-                <select id="sort-by">
-                    <option value="alphabetically">Alphabetically</option>
-                    <option value="popularity">By Popularity</option>
-                </select>
-                <ul id="characters-list"></ul>
-                <div>
-                    <button id="prev-page">Previous Page</button>
-                    <button id="next-page">Next Page</button>
-                </div>
-            </div>
-        
-             <div class="rightLayout">
-                 <div class="rightContent">
-                     <div style="width:500px;height:100px;border:1px solid #000;">
-                        <h5>YouTube Search</h5>
-                    </div>
-                    <br>
-                    <div style="width:500px;height:100px;border:1px solid #000;">
-                        <h5>Character of the Day</h5>
-                    </div>
-                    <br>
-                    <div style="width:500px;height:100px;border:1px solid #000;">
-                        <h5>Forums to Join</h5>
-                    </div>
-                 </div>
-            </div>
+  <head>
+    <title>animeforme</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mycss.css" />
+    <script src="./html-include.js"></script>
+    <script src="./characters.js"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="leftLayout">
+        <div class="__include" data-src="./nav.html"></div>
+      </div>
+
+      <div class="midLayout">
+        <h3><a href="characters.html">Characters</a></h3>
+        <h5>All Characters</h5>
+        <label for="sort-by">Sort:</label>
+        <select id="sort-by">
+          <option value="alphabetically">Alphabetically</option>
+          <option value="popularity">By Popularity</option>
+        </select>
+        <ul id="characters-list"></ul>
+        <div>
+          <button id="prev-page">Previous Page</button>
+          <button id="next-page">Next Page</button>
         </div>
-    </body>
+      </div>
+
+      <div class="rightLayout">
+        <div class="rightContent">
+          <div style="width: 500px; height: 100px; border: 1px solid #000">
+            <h5>YouTube Search</h5>
+          </div>
+          <br />
+          <div style="width: 500px; height: 100px; border: 1px solid #000">
+            <h5>Character of the Day</h5>
+          </div>
+          <br />
+          <div class="__include" data-src="./all-forums.html"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

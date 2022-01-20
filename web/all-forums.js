@@ -1,32 +1,4 @@
-(() => {
-let currentPage = 1;
-const LIMIT = 3;
-
-  console.log("all list thingy imported!");
-  let forumsList = document.getElementById("all-forums-list");
-  let sortSelect = document.getElementById("allf-sort-by");
-
-  let nextPageBtn = document.getElementById("allf-next-page");
-  let prevPageBtn = document.getElementById("allf-prev-page");
-
-  nextPageBtn.onclick = function () {
-    currentPage++;
-    updateAllForumsList();
-  };
-
-  prevPageBtn.onclick = function () {
-    currentPage--;
-    updateAllForumsList();
-  };
-  
-  sortSelect.onchange = function() {
-      updateAllForumsList();
-  };
-  
-  updateAllForumsList();
-
 function joinForum() {
-  // add user to forum
   fetch(
     `./Forums?username=${sessionStorage.getItem(
       "userName"
@@ -37,92 +9,102 @@ function joinForum() {
   )
     .then((res) => res.text())
     .then((msg) => {
-        console.log(msg);
-      updateAnimeList();
+      console.log(msg);
+      updateAllForumsList();
+      if (window.updateMyForums) {
+        updateMyForums();
+      }
     });
 }
 
+let allfCurrentPage = 1;
+const allfPageLimit = 3;
+
+let allForumsList = document.getElementById("all-forums-list");
+let allfSortSelect = document.getElementById("allf-sort-by");
+
+let allfNextPageBtn = document.getElementById("allf-next-page");
+let allfPrevPageBtn = document.getElementById("allf-prev-page");
+
+allfNextPageBtn.onclick = function () {
+  allfCurrentPage++;
+  updateAllForumsList();
+};
+
+allfPrevPageBtn.onclick = function () {
+  allfCurrentPage--;
+  updateAllForumsList();
+};
+
+allfSortSelect.onchange = function () {
+  allfCurrentPage = 1;
+  updateAllForumsList();
+};
+
+updateAllForumsList();
+
 async function updateAllForumsList() {
-    console.log("im so sad");
-  const animeReq = new XMLHttpRequest();
-  const mangaReq = new XMLHttpRequest();
-  
-  
+  allForumsList.innerHTML = "";
+
   const myForumsRes = await fetch(
     `./Forums?username=${sessionStorage.getItem("userName")}`
   );
   const myForums = await myForumsRes.json();
 
-  animeReq.responseType = "json";
-  mangaReq.responseType = "json";
+  console.log(myForums);
 
-  if (sortSelect.value === "alphabetically") {
-    animeReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/anime?limit=${LIMIT}&order_by=title&page=${currentPage}`,
-      true
+  let animeRes = null;
+  let mangaRes = null;
+
+  if (allfSortSelect.value === "alphabetically") {
+    animeRes = await fetch(
+      `https://api.jikan.moe/v4/anime?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}`
     );
-    mangaReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/manga?limit=${LIMIT}&order_by=title&page=${currentPage}`,
-      true
+    mangaRes = await fetch(
+      `https://api.jikan.moe/v4/manga?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}`
     );
-  } else if (sortSelect.value === "popularity") {
-    animeReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/top/anime?limit=${LIMIT}&page=${currentPage}`,
-      true
+  } else if (allfSortSelect.value === "popularity") {
+    animeRes = await fetch(
+      `https://api.jikan.moe/v4/top/anime?limit=${allfPageLimit}&page=${allfCurrentPage}`
     );
-    mangaReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/top/manga?limit=${LIMIT}&page=${currentPage}`,
-      true
+    mangaRes = await fetch(
+      `https://api.jikan.moe/v4/top/manga?limit=${allfPageLimit}&page=${allfCurrentPage}`
     );
   }
 
-  function reqHandler(req, isAnime) {
-    const json = req.response;
-    let topAnimeAsListElements = "";
+  const animeJson = await animeRes.json();
+  const mangaJson = await mangaRes.json();
 
-    console.log(json.data);
-    console.log(json.pagination);
-
-    json.data.forEach((anime) => {
-      let option = isAnime ? 0 : 1;
-      topAnimeAsListElements += `<li>
-                      <img src="${anime.images.jpg.image_url}" 
-                          style="width: auto; height: 90px;" >
-                      <h4>${anime.title}</h4>
-                      <button ${
-                        myForums.find((forum) =>
-                          forum.animeId !== null
-                            ? forum.animeId === anime.mal_id && option === 0
-                            : forum.mangaId === anime.mal_id && option === 1
-                        )
-                          ? "disabled"
-                          : ""
-                      } onclick="statusChangeListener()" style="float:right;" data-id="${
-        anime.mal_id
-      }" data-option="${option}">Join</button>
-                     
-                  </li>`;
-    });
-
-    nextPageBtn.style.display = !json.pagination.has_next_page
-      ? "none"
-      : "block";
-    prevPageBtn.style.display = currentPage === 1 ? "none" : "block";
-
-    forumsList.innerHTML += topAnimeAsListElements;
+  let topAnimeAsListElements = "";
+  function loopHandler(json, isAnime) {
+    let option = isAnime ? 0 : 1;
+    topAnimeAsListElements += `
+        <li>
+          <img src="${
+            json.images.jpg.image_url
+          }" style="width: auto; height: 90px;">
+          <h4>${json.title}</h4>
+          <button ${
+            myForums.find((forum) =>
+              forum.animeId !== null
+                ? forum.animeId === json.mal_id && option === 0
+                : forum.mangaId === json.mal_id && option === 1
+            )
+              ? "disabled"
+              : ""
+          } onclick="joinForum()" style="float:right;" data-id="${
+      json.mal_id
+    }" data-option="${option}">Join</button>
+        </li>
+      `;
   }
 
-  forumsList.innerHTML = "";
-  animeReq.onload = () => reqHandler(animeReq, true);
-  mangaReq.onload = () => reqHandler(mangaReq, false);
+  animeJson.data.forEach((el) => loopHandler(el, true));
+  mangaJson.data.forEach((el) => loopHandler(el, false));
 
-  animeReq.send(null);
-  mangaReq.send(null);
+  allfNextPageBtn.style.display = !animeJson.pagination.has_next_page
+    ? "none"
+    : "block";
+  allfPrevPageBtn.style.display = allfCurrentPage === 1 ? "none" : "block";
+  allForumsList.innerHTML += topAnimeAsListElements;
 }
-
-
-})();

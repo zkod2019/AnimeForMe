@@ -5,62 +5,78 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="stylesheet" href="mycss.css" />
-        <script src="./client-error.js"></script>
-        <script src="./html-include.js"></script>
-        <script src="./index.js"></script>
-        <title>AnimeForMe</title>
-    
-    </head>
-    <body>
-        <header></header>
-        <main>
-            <section>
-                <img src="resources/frontpagepic.jpeg" />
-            </section>
-            
-            <section>
-            <div class="container">
-                <div class="signup-button">Sign Up</div>
-               
-                
-                <div class="signup">
-                    <form action="./SignUpServlet" method="POST" class="form">
-                    <label for="TC">Username</label>
-                    <input type="text" id="userName" name="username" required><br>
-                    <label for="TC">Password</label>
-                    <input type="password" id="psw" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}" title="Must contain at least one number, one uppercase and lowercase letter, and 5-10 characters" required><br>
-                    <label for="TC">Agree to our terms</label>
-                    <input type="checkbox" id="TC" name="TandC" value="yes" required><br>
-                    <input type="submit"><input type="reset">
-            
-                    </form>
-             
-                </div>
-                
-                 <div class="login-button">Login</div>
-                <div class="login">
-                    <form id="signInForm" method="POST" class="form">
-                    <label for="TC">Username</label>
-                    <input type="text" id="signInUserName" name="userName" required><br>
-                    <label for="TC">Password</label>
-                    <input type="password" id="signInPassword" name="psw" required><br>
-                    <p id="errorMessage"> </p>
-                    <input type="submit"><input type="reset">
-            
-                    </form>
-             
-                </div>
-                
-            </div>
-            </section>
-        </main>
-        <footer>
-            <p id="copyright-footer">Copyright ©&nbsp;</p>
-        </footer>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="mycss.css" />
+    <script src="./client-error.js"></script>
+    <script src="./html-include.js"></script>
+    <script src="./index.js"></script>
+    <title>AnimeForMe</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <section>
+        <img src="resources/frontpagepic.jpeg" />
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="signup-button">Sign Up</div>
+
+          <div class="signup">
+            <form action="./SignUpServlet" method="POST" class="form">
+              <label for="TC">Username</label>
+              <input type="text" id="userName" name="username" required /><br />
+              <label for="TC">Password</label>
+              <input
+                type="password"
+                id="psw"
+                name="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}"
+                title="Must contain at least one number, one uppercase and lowercase letter, and 5-10 characters"
+                required
+              /><br />
+              <label for="TC">Agree to our terms</label>
+              <input
+                type="checkbox"
+                id="TC"
+                name="TandC"
+                value="yes"
+                required
+              /><br />
+              <input type="submit" /><input type="reset" />
+            </form>
+          </div>
+
+          <div class="login-button">Login</div>
+          <div class="login">
+            <form id="signInForm" method="POST" class="form">
+              <label for="TC">Username</label>
+              <input
+                type="text"
+                id="signInUserName"
+                name="userName"
+                required
+              /><br />
+              <label for="TC">Password</label>
+              <input
+                type="password"
+                id="signInPassword"
+                name="psw"
+                required
+              /><br />
+              <p id="errorMessage"></p>
+              <input type="submit" /><input type="reset" />
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p id="copyright-footer">Copyright ©&nbsp;</p>
+    </footer>
+  </body>
 </html>

@@ -1,17 +1,12 @@
-let forumsList = null;
 let myForumsList = null;
-let sortSelect = null;
-let pageList = null;
+let myfNextPageBtn = null;
+let myfPrevPageBtn = null;
 
 let forumTitle = null;
 let forumPostsList = null;
 let newPostForm = null;
 let newPostContent = null;
 
-let nextPageBtn = null;
-let prevPageBtn = null;
-
-let currentPage = 1;
 let myForumsCurrentPage = 1;
 
 let currentlySelectedForumTargetId = null;
@@ -31,43 +26,20 @@ window.onload = function () {
     newPostContent = document.getElementById("post-content");
   }
 
-  forumsList = document.getElementById("all-forums-list");
   myForumsList = document.getElementById("my-forums-list");
-
-  pageList = document.getElementById("page-list");
-  sortSelect = document.getElementById("sort-by");
-
-  nextPageBtn = document.getElementById("next-page");
-  prevPageBtn = document.getElementById("prev-page");
-
   myfNextPageBtn = document.getElementById("my-next-page");
   myfPrevPageBtn = document.getElementById("my-prev-page");
 
-  updateAnimeList();
-
-  nextPageBtn.onclick = function () {
-    currentPage++;
-    updateAnimeList();
-  };
-
-  prevPageBtn.onclick = function () {
-    currentPage--;
-    updateAnimeList();
-  };
+  updateMyForums();
 
   myfNextPageBtn.onclick = function () {
     myForumsCurrentPage++;
-    updateAnimeList();
+    updateMyForums();
   };
 
   myfPrevPageBtn.onclick = function () {
     myForumsCurrentPage--;
-    updateAnimeList();
-  };
-
-  sortSelect.onchange = function () {
-    currentPage = 1;
-    updateAnimeList();
+    updateMyForums();
   };
 
   newPostForm.onsubmit = async function (e) {
@@ -90,22 +62,6 @@ window.onload = function () {
   };
 };
 
-function statusChangeListener() {
-  // add user to forum
-  fetch(
-    `./Forums?username=${sessionStorage.getItem(
-      "userName"
-    )}&targetId=${this.event.target.getAttribute(
-      "data-id"
-    )}&option=${this.event.target.getAttribute("data-option")}`,
-    { method: "POST" }
-  )
-    .then((res) => res.text())
-    .then(() => {
-      updateAnimeList();
-    });
-}
-
 function leaveForumHandler() {
   fetch(
     `./Forums?username=${sessionStorage.getItem(
@@ -117,7 +73,10 @@ function leaveForumHandler() {
   )
     .then((res) => res.text())
     .then(() => {
-      updateAnimeList();
+      updateMyForums();
+      if (window.updateAllForumsList) {
+        updateAllForumsList();
+      }
     });
 }
 
@@ -186,10 +145,7 @@ async function updateCurrentForumPosts(targetId, isAnime) {
   }
 }
 
-async function updateAnimeList() {
-  const animeReq = new XMLHttpRequest();
-  const mangaReq = new XMLHttpRequest();
-
+async function updateMyForums() {
   myForumsList.innerHTML = "";
 
   const myForumsRes = await fetch(
@@ -198,7 +154,7 @@ async function updateAnimeList() {
   const myForums = await myForumsRes.json();
 
   const myForumListElementsAsArray = [];
-  const myForumPromises = myForums.map(async (forum) => {
+  for (let forum of myForums) {
     let json = null;
     if (forum.animeId !== null) {
       const animeRes = await fetch(
@@ -212,7 +168,7 @@ async function updateAnimeList() {
       json = await mangaRes.json();
     }
 
-    console.log(json);
+        console.log(json);
     json = json.data;
     let option = forum.animeId === null ? 1 : 0;
     myForumListElementsAsArray.push(`
@@ -231,12 +187,13 @@ async function updateAnimeList() {
         }" data-option="${option}">Leave</button>
       </li>
     `);
-  });
-
-  await Promise.all(myForumPromises);
+  }
 
   console.log("listelementsasarray", myForumListElementsAsArray);
-  const listElementsByPages = cutPages(myForumListElementsAsArray, LIMIT);
+  const listElementsByPages = cutPages(
+    myForumListElementsAsArray,
+    allfPageLimit
+  );
   console.log(listElementsByPages);
 
   console.log(
@@ -248,74 +205,4 @@ async function updateAnimeList() {
   myForumsList.innerHTML = listElementsByPages[myForumsCurrentPage - 1]
     ? listElementsByPages[myForumsCurrentPage - 1].join("\n")
     : "";
-
-  animeReq.responseType = "json";
-  mangaReq.responseType = "json";
-
-  if (sortSelect.value === "alphabetically") {
-    animeReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/anime?limit=${LIMIT}&order_by=title&page=${currentPage}`,
-      true
-    );
-    mangaReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/manga?limit=${LIMIT}&order_by=title&page=${currentPage}`,
-      true
-    );
-  } else if (sortSelect.value === "popularity") {
-    animeReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/top/anime?limit=${LIMIT}&page=${currentPage}`,
-      true
-    );
-    mangaReq.open(
-      "GET",
-      `https://api.jikan.moe/v4/top/manga?limit=${LIMIT}&page=${currentPage}`,
-      true
-    );
-  }
-
-  function reqHandler(req, isAnime) {
-    const json = req.response;
-    let topAnimeAsListElements = "";
-
-    console.log(json.data);
-    console.log(json.pagination);
-
-    json.data.forEach((anime) => {
-      let option = isAnime ? 0 : 1;
-      topAnimeAsListElements += `<li>
-                    <img src="${anime.images.jpg.image_url}" 
-                        style="width: auto; height: 90px;" >
-                    <h4>${anime.title}</h4>
-                    <button ${
-                      myForums.find((forum) =>
-                        forum.animeId !== null
-                          ? forum.animeId === anime.mal_id && option === 0
-                          : forum.mangaId === anime.mal_id && option === 1
-                      )
-                        ? "disabled"
-                        : ""
-                    } onclick="statusChangeListener()" style="float:right;" data-id="${
-        anime.mal_id
-      }" data-option="${option}">Join</button>
-                   
-                </li>`;
-    });
-
-    nextPageBtn.style.display = !json.pagination.has_next_page
-      ? "none"
-      : "block";
-    prevPageBtn.style.display = currentPage === 1 ? "none" : "block";
-
-    forumsList.innerHTML += topAnimeAsListElements;
-  }
-
-  forumsList.innerHTML = "";
-  animeReq.onload = () => reqHandler(animeReq, true);
-  mangaReq.onload = () => reqHandler(mangaReq, false);
-
-  animeReq.send(null);
-  mangaReq.send(null);
 }

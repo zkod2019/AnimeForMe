@@ -5,55 +5,42 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>animeforme</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="mycss.css" />
-        <script src="./html-include.js"></script>
-        <script src="./forums.js"></script>
-            </head>
-    <body>
-        <div class="layout">
-            <div class="leftLayout">
-                <div class="__include" data-src="./nav.html"></div>
+  <head>
+    <title>animeforme</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mycss.css" />
+    <script src="./html-include.js"></script>
+    <script src="./forums.js"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="leftLayout">
+        <div class="__include" data-src="./nav.html"></div>
+      </div>
+
+      <div class="midLayout">
+        <h3 id="title">Forums</h3>
+        <form id="new-post-form">
+          <textarea id="post-content"></textarea>
+          <button type="submit">Create</button>
+        </form>
+        <ul type="none" id="posts-list"></ul>
+      </div>
+
+      <div class="rightLayout">
+        <div class="rightContent">
+          <div style="width: 500px; height: auto; border: 1px solid #000">
+            <h5>My Forums</h5>
+            <ul id="my-forums-list"></ul>
+            <div>
+              <button id="my-prev-page">Previous Page</button>
+              <button id="my-next-page">Next Page</button>
             </div>
-            
-            <div class="midLayout">
-                <h3 id="title">Forums</h3>
-                <form id="new-post-form">
-                    <textarea id="post-content"></textarea>
-                    <button type="submit">Create</button>
-                </form>
-                <ul type="none" id="posts-list"></ul>
-            </div>
-        
-             <div class="rightLayout">
-                 <div class="rightContent">
-                    <div style="width:500px;height:auto;border:1px solid #000;">
-                        <h5>My Forums</h5>
-                        <ul id="my-forums-list"></ul>
-                        <div>
-                            <button id="my-prev-page">Previous Page</button>
-                            <button id="my-next-page">Next Page</button>
-                        </div>
-                    </div>
-                     <div style="width:500px;height:auto;border:1px solid #000;">
-                        <h5>All Forums</h5>
-                        <label for="sort-by">Sort:</label>
-                        <select id="sort-by">
-                            <option value="alphabetically">Alphabetically</option>
-                            <option value="popularity">By Popularity</option>
-                        </select>
-                        <ul id="all-forums-list"></ul>
-                        <div>
-                            <button id="prev-page">Previous Page</button>
-                            <button id="next-page">Next Page</button>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-     
+          </div>
+          <div class="__include" data-src="./all-forums.html"></div>
         </div>
-    </body>
+      </div>
+    </div>
+  </body>
 </html>

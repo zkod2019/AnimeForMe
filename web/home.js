@@ -25,7 +25,7 @@ async function updateMyForums() {
   const myForums = await myForumsRes.json();
   console.log(myForums);
 
-  const myForumPromises = myForums.map(async (forum) => {
+  for (let forum of myForums) {
     let json = null;
     if (forum.animeId !== null) {
       const animeRes = await fetch(
@@ -50,9 +50,7 @@ async function updateMyForums() {
             <button onclick="leaveForumHandler()" data-id="${json.mal_id}" data-option="${option}">Leave</button>
         </li>
     `;
-  });
-
-  await Promise.all(myForumPromises);
+  }
 }
 
 window.onload = function () {

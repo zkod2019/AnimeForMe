@@ -34,11 +34,15 @@ window.onload = function () {
 };
 
 function statusChangeListener() {
-    var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}&status=0`;
-    console.log(url);
-    fetch(url, {
-        method: 'PUT',
-    }).then(response => response.text()).then(console.log);
+  var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute(
+    "data-id"
+  )}&username=${sessionStorage.getItem("userName")}&status=0`;
+  console.log(url);
+  fetch(url, {
+    method: "PUT",
+  })
+    .then((response) => response.text())
+    .then(console.log);
 }
 
 function updateMangaList() {
@@ -65,27 +69,51 @@ function updateMangaList() {
 
     console.log(json.data);
     console.log(json.pagination);
-    
 
     json.data.forEach((manga) => {
-      topMangaAsListElements += 
-                `<li>
+      topMangaAsListElements += `<li>
                     <img src="${manga.images.jpg.image_url}" 
                         style="width: auto; height: 90px;"/>
                     <h4>${manga.title}</h4>
-                    <button onclick="statusChangeListener()" style="float:right;" data-id="${manga.mal_id}"> Add to My List
+                    <button onclick="statusChangeListener()" style="float:right;" data-id="${
+                      manga.mal_id
+                    }"> Add to My List
                     </button>
-                    ${manga.volumes || manga.rank || manga.genres.length>0 || manga.score || manga.background || manga.synopsis || manga.chapters?
-                    `<details>
+                    ${
+                      manga.volumes ||
+                      manga.rank ||
+                      manga.genres.length > 0 ||
+                      manga.score ||
+                      manga.background ||
+                      manga.synopsis ||
+                      manga.chapters
+                        ? `<details>
                         <summary>Manga Info:</summary>
-                        ${manga.rank? `Rank: ${manga.rank} <br> ` : ''}
-                        ${manga.score? `Score: ${manga.scored} <br>` : ''}
-                        ${manga.volumes? `Volumes: ${manga.volumes} <br>` : ''}
-                        ${manga.chapters? `Chapters: ${manga.chapters} <br>` : ''}
-                        ${manga.synopsis? `Synopsis: ${manga.synopsis} <br>` : ''}
-                        ${manga.background? `Background: ${manga.background} <br>` : ''}
-                        ${manga.genres.length>0? `Genre: ${manga.genres[0].name} <br>` : ''}
-                    </details>` : ''
+                        ${manga.rank ? `Rank: ${manga.rank} <br> ` : ""}
+                        ${manga.score ? `Score: ${manga.scored} <br>` : ""}
+                        ${manga.volumes ? `Volumes: ${manga.volumes} <br>` : ""}
+                        ${
+                          manga.chapters
+                            ? `Chapters: ${manga.chapters} <br>`
+                            : ""
+                        }
+                        ${
+                          manga.synopsis
+                            ? `Synopsis: ${manga.synopsis} <br>`
+                            : ""
+                        }
+                        ${
+                          manga.background
+                            ? `Background: ${manga.background} <br>`
+                            : ""
+                        }
+                        ${
+                          manga.genres.length > 0
+                            ? `Genre: ${manga.genres[0].name} <br>`
+                            : ""
+                        }
+                    </details>`
+                        : ""
                     }
                     <br><br>
                 </li>`;

@@ -34,11 +34,15 @@ window.onload = function () {
 };
 
 function addCharacters() {
-    var url = `./ACM?option=characters&characterId=${this.event.target.getAttribute("data-id")}&username=${sessionStorage.getItem("userName")}`;
-    console.log(url);
-    fetch(url, {
-        method: 'PUT'
-    }).then(response => response.text()).then(console.log);
+  var url = `./ACM?option=characters&characterId=${this.event.target.getAttribute(
+    "data-id"
+  )}&username=${sessionStorage.getItem("userName")}`;
+  console.log(url);
+  fetch(url, {
+    method: "PUT",
+  })
+    .then((response) => response.text())
+    .then(console.log);
 }
 
 function updateCharactersList() {
@@ -67,17 +71,20 @@ function updateCharactersList() {
     console.log(json.pagination);
 
     json.data.forEach((characters) => {
-      topCharactersAsListElements += 
-                `<li>
+      topCharactersAsListElements += `<li>
                     <img src="${characters.images.jpg.image_url}" />
                     <h4>${characters.name}</h4>
-                    <button onclick="addCharacters()" style="float:right;" data-id="${characters.mal_id}"> Add to My List
+                    <button onclick="addCharacters()" style="float:right;" data-id="${
+                      characters.mal_id
+                    }"> Add to My List
                     </button>
-                    ${characters.about?
-                    `<details>
+                    ${
+                      characters.about
+                        ? `<details>
                         <summary>Character Info:</summary>
                         ${characters.about}
-                    </details>` : ''
+                    </details>`
+                        : ""
                     }
                 </li>`;
     });
