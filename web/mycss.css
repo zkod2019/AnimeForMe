@@ -18,11 +18,9 @@ body,
 main {
   margin: 0;
   padding: 0;
-
   width: 100%;
   height: 100%;
 }
-
 main {
   display: flex;
 }
@@ -40,23 +38,87 @@ main > section > img {
   object-fit: cover;
 }
 
-.container{
-    margin: 90px auto;
+
+
+.toggle-signup{
+    padding: 10px 30px;
+    cursor: pointer;
+    border: 0;
+    outline: none; 
+    position: absolute;
+    top: 200px;
+    right: 200px;
+    font-size: 18px;
+    
+    border-radius: 30px;
+    transition: .5s;
+    background-color: lightpink;
+  color: hotpink;
+  font-weight: bold;
 }
 
-.signup-button,
-.login-button{
-    width: 50%;
-    float: left; 
+.toggle-login{
+    padding: 10px 30px;
     cursor: pointer;
-    text-transform: uppercase;
+    border: 0;
+    outline: none; 
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    font-size: 18px;
+    border-radius: 30px;
+    transition: .5s;
+    background-color: lightpink;
+    color: hotpink;
+    font-weight: bold;
 }
 
 .form{
-    padding: 12px 20px;
+    top: 180px;
+    width: 400px;
+    height: 300px;
+    padding: 40px 20px;
+    margin: 6% auto;
+    position: absolute;
     box-sizing: border-box;
     background-image:linear-gradient(to bottom, yellow, pink, lightskyblue);
-    border: 5px solid blue;
+    border: 3px solid blue;
+}
+
+.submit-button, .reset-button{
+    width: 75%;
+    padding: 10px 30px;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    background-color: lightpink;
+    color: hotpink;
+    font-weight: bold;
+    border: 0;
+    outline: 1px solid blue;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+#userName, #signInUserName, #psw, #signInPassword{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+}
+
+#signupForm{
+    left: 150px;
+    
+}
+
+#signInForm{
+    left: 350px;
     
 }
 
@@ -69,7 +131,6 @@ main > section > img {
     position: fixed;
     font-size: 12px;
     color: #0F141A;
-     
     float: left;
     padding: 0px 5px ;
     background-color: white;
@@ -96,6 +157,8 @@ main > section > img {
   background-color: lightpink;
   color: hotpink;
   font-weight: bold;
+  border-radius: 30px;
+    transition: .5s;
 }
 
 .layout{
@@ -120,7 +183,6 @@ main > section > img {
     margin-right: 20px;
     font-family: Verdana,Arial;
     font-size: 12px;
-    
 }
 
 #all-forums-list {
