@@ -12,6 +12,10 @@ import org.jsoup.select.Elements;
 
 
 public class News extends HttpServlet {
+    private static String escapeJSON(String json) {
+        return json.replace("\\", "\\\\").replace("\"", "\\\"");
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,7 +35,13 @@ public class News extends HttpServlet {
                 String excerpt = unit.getElementsByClass("text").first().text();
                 String url = unit.getElementsByTag("a").first().attr("href");
                 
-                newsAsList += String.format("{\"imageUrl\": \"%s\", \"title\": \"%s\", \"excerpt\": \"%s\", \"url\": \"%s\"},", imageUrl, title, excerpt, url);
+                newsAsList += String.format(
+                        "{\"imageUrl\": \"%s\", \"title\": \"%s\", \"excerpt\": \"%s\", \"url\": \"%s\"},",
+                        imageUrl,
+                        escapeJSON(title),
+                        escapeJSON(excerpt),
+                        url
+                ); 
             }
             if (newsAsList.endsWith(",")) {
                 newsAsList = newsAsList.substring(0, newsAsList.length() - 1);

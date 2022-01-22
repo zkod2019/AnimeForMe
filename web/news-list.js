@@ -13,11 +13,12 @@ console.log(newsList);
     const newsJson = await newsRes.json();
     console.log(newsJson);
     newsJson.forEach(article => {
+        console.log(article);
         newsList.innerHTML += `
             <li>
-                <img src="${article.imageUrl}">
+                <img src="${article.imageUrl}" />
                 <a href="${article.url}"><h4>${article.title}</h4></a>
-                <p>${article.exerpt}</p>
+                <p>${article.excerpt}</p>
             </li>
         `;
     });
