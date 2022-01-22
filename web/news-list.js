@@ -12,7 +12,7 @@ console.log(newsList);
     const newsRes = await fetch("./News");
     const newsJson = await newsRes.json();
     console.log(newsJson);
-    newsJson.forEach(article => {
+    newsJson.slice(0, 5).forEach(article => {
         console.log(article);
         newsList.innerHTML += `
             <li>
