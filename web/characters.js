@@ -50,10 +50,16 @@ function addCharacters() {
     method: "PUT",
   })
     .then((response) => response.text())
-    .then(console.log);
+     .then(responseText => {
+        console.log(responseText);
+        updateCharactersList();
+    });
 }
 
-function updateCharactersList() {
+async function updateCharactersList() {
+    const myCharactersRes = await fetch(`./ACM?username=${sessionStorage.getItem("userName")}&option=characters`);
+    const myCharacters = await myCharactersRes.json();
+    
   const req = new XMLHttpRequest();
   req.responseType = "json";
 
@@ -82,7 +88,7 @@ function updateCharactersList() {
       topCharactersAsListElements += `<li>
                     <img src="${characters.images.jpg.image_url}" />
                     <h4>${characters.name}</h4>
-                    <button onclick="addCharacters()" style="float:right;" data-id="${
+                    <button ${myCharacters.data.find(a => a.characterId === characters.mal_id) ? 'disabled' : ''} onclick="addCharacters()" style="float:right;" data-id="${
                       characters.mal_id
                     }"> Add to My List
                     </button>

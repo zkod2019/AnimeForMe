@@ -49,10 +49,16 @@ function statusChangeListener() {
     method: "PUT",
   })
     .then((response) => response.text())
-    .then(console.log);
+     .then(responseText => {
+        console.log(responseText);
+        updateMangaList();
+    });
 }
 
-function updateMangaList() {
+async function updateMangaList() {
+   const myMangaRes = await fetch(`./ACM?username=${sessionStorage.getItem("userName")}&option=manga`);
+   const myManga = await myMangaRes.json();
+    
   const req = new XMLHttpRequest();
   req.responseType = "json";
 
@@ -82,7 +88,7 @@ function updateMangaList() {
                     <img src="${manga.images.jpg.image_url}" 
                         style="width: auto; height: 90px;"/>
                     <h4>${manga.title}</h4>
-                    <button onclick="statusChangeListener()" style="float:right;" data-id="${
+                    <button ${myManga.data.find(a => a.mangaId === manga.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" data-id="${
                       manga.mal_id
                     }"> Add to My List
                     </button>
