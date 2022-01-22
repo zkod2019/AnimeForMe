@@ -159,6 +159,66 @@ public class ACM extends HttpServlet {
         }
     }
     
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();     
+        
+        String option = request.getParameter("option");
+        String username = request.getParameter("username");
+        
+        log("BYEE");
+
+        Connection conn = null;
+        PreparedStatement deleteStatement = null;
+
+        try  {
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
+
+            switch (option) {
+                case "manga":
+                    log("manga option");
+                    int mangaId = Integer.parseInt(request.getParameter("mangaId"));
+                    deleteStatement = conn.prepareStatement("DELETE FROM mangarelation WHERE username = (?) AND mangaId = (?)");
+                    deleteStatement.setString(1, username);
+                    deleteStatement.setInt(2, mangaId);
+                    deleteStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Manga deleted.");
+                    break;
+                case "anime":
+                    log("anime option");
+                    int animeId = Integer.parseInt(request.getParameter("animeId"));
+                    deleteStatement = conn.prepareStatement("DELETE FROM animerelation WHERE username = (?) AND animeId = (?)");
+                    deleteStatement.setString(1, username);
+                    deleteStatement.setInt(2, animeId);
+                    deleteStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Anime deleted.");
+                    break;
+                case "characters":
+                    log("characters option");
+                    int characterId = Integer.parseInt(request.getParameter("characterId"));
+                    deleteStatement = conn.prepareStatement("DELETE FROM charactersrelation WHERE username = (?) AND characterId = (?)");
+                    deleteStatement.setString(1, username);
+                    deleteStatement.setInt(2, characterId);
+                    deleteStatement.executeUpdate();
+                    response.setStatus(200);
+                    out.println("Character deleted.");
+                    break;
+                default:
+                    break;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ACM.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            out.close();
+            if (deleteStatement != null) {
+                try {deleteStatement.close();} catch (SQLException e) {/*Ignore*/}
+            }
+        }
+    }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -53,7 +53,9 @@ async function updateMyForums() {
   }
 }
 
-window.onload = function () {
+window.onload  = updateHome;
+
+function updateHome() {
   var hi = document.getElementById("hi");
   var userName = sessionStorage.getItem("userName"); //localStorage instead of session will keep it open across tabs
   if (userName) {
@@ -62,6 +64,10 @@ window.onload = function () {
     var myMangaList = document.getElementById("myMangaList");
     var myAnimeList = document.getElementById("myAnimeList");
     var myCharactersList = document.getElementById("myCharactersList");
+
+    myMangaList.innerHTML = "";
+    myAnimeList.innerHTML = "";
+    myCharactersList.innerHTML = "";
 
     myForumsList = document.getElementById("my-forums-list");
 
@@ -96,6 +102,7 @@ window.onload = function () {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
+                <button data-id="${pair.mangaId}" data-option="manga" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -126,6 +133,7 @@ window.onload = function () {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
+                    <button data-id="${pair.animeId}" data-option="anime" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -142,11 +150,22 @@ window.onload = function () {
           ).data.name;
           myCharactersList.innerHTML += `<li>
                     <h4>${charactersHeading}</h4>
+                <button data-id="${pair.characterId}" data-option="characters" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
   }
 };
+
+async function removeACMHandler(){
+    let id = this.event.target.getAttribute("data-id");
+    let option = this.event.target.getAttribute("data-option");
+    
+    console.log(id);
+    await fetch(`./ACM?${option==="characters"?"character":option}Id=${id}&option=${option}&username=${sessionStorage.getItem("userName")}`, {method : "DELETE"});
+    updateHome();
+    
+}
 
 function mangaStatusChange() {
   var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute(

@@ -140,10 +140,22 @@ async function updateCurrentForumPosts(targetId, isAnime) {
       forumPostsList.innerHTML += `<li>
                 <p>${post.content}</p>
             <small>${post.authorName}</small>
+            ${sessionStorage.getItem("userName") === post.authorName ? `<button data-postId="${post.id}" onclick="deletePostHandler()">Delete Post</button>` : ""} 
             </li>`;
     });
   }
 }
+
+async function deletePostHandler(){
+    let postId = this.event.target.getAttribute("data-postId");
+    console.log(postId);
+    await fetch(`./Posts?postId=${postId}`, {method : "DELETE"});
+     updateCurrentForumPosts(
+          currentlySelectedForumTargetId,
+          currentlySelectedForumOption === 0
+        );
+}
+
 
 async function updateMyForums() {
   myForumsList.innerHTML = "";

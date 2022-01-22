@@ -20,6 +20,10 @@
         <servlet-name>Posts</servlet-name>
         <servlet-class>Posts</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>News</servlet-name>
+        <servlet-class>News</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Posts</servlet-name>
         <url-pattern>/Posts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>News</servlet-name>
+        <url-pattern>/News</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
