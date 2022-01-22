@@ -22,6 +22,12 @@ and open the template in the editor.
       <div class="midLayout">
         <h3>Manga</h3>
         <h5>All Manga</h5>
+        
+        <form onsubmit="searchManga()">
+            <input type="search" name="search" id="search" />
+            <button type="submit">Search</button>
+        </form>
+        
         <label for="sort-by">Sort:</label>
         <select id="sort-by">
           <option value="alphabetically">Alphabetically</option>

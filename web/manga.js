@@ -7,6 +7,13 @@ let prevPageBtn = null;
 
 let currentPage = 1;
 
+let mangaSearchInput = null;
+
+function searchManga() {
+    this.event.preventDefault();
+    updateMangaList();
+}
+
 window.onload = function () {
   mangaList = document.getElementById("manga-list");
   pageList = document.getElementById("page-list");
@@ -14,7 +21,7 @@ window.onload = function () {
 
   nextPageBtn = document.getElementById("next-page");
   prevPageBtn = document.getElementById("prev-page");
-
+  mangaSearchInput = document.getElementById("search");
   updateMangaList();
 
   nextPageBtn.onclick = function () {
@@ -52,13 +59,13 @@ function updateMangaList() {
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/manga?order_by=title&page=${currentPage}`,
+      `https://api.jikan.moe/v4/manga?order_by=title&page=${currentPage}${mangaSearchInput.value ? `&q=${encodeURIComponent(mangaSearchInput.value)}` : ''}`,
       true
     );
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/top/manga?page=${currentPage}`,
+      `https://api.jikan.moe/v4/top/manga?page=${currentPage}${mangaSearchInput.value ? `&q=${encodeURIComponent(mangaSearchInput.value)}` : ''}`,
       true
     );
   }

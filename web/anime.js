@@ -5,15 +5,24 @@ let pageList = null;
 let nextPageBtn = null;
 let prevPageBtn = null;
 
+let animeSearchInput = null;
+
 let currentPage = 1;
 
-window.onload = function () {    
+function searchAnime() {
+    this.event.preventDefault();
+    updateAnimeList();
+}
+
+window.onload = function() {    
   animeList = document.getElementById("anime-list");
   pageList = document.getElementById("page-list");
   sortSelect = document.getElementById("sort-by");
 
   nextPageBtn = document.getElementById("next-page");
   prevPageBtn = document.getElementById("prev-page");
+  
+  animeSearchInput = document.getElementById("search");
 
   updateAnimeList();
 
@@ -52,13 +61,13 @@ function updateAnimeList() {
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/anime?sfw=true&order_by=title&page=${currentPage}`,
+      `https://api.jikan.moe/v4/anime?sfw=true&order_by=title&page=${currentPage}${animeSearchInput.value ? `&q=${encodeURIComponent(animeSearchInput.value)}` : ''}`,
       true
     );
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/top/anime?page=${currentPage}`,
+      `https://api.jikan.moe/v4/top/anime?page=${currentPage}${animeSearchInput.value ? `&q=${encodeURIComponent(animeSearchInput.value)}` : ''}`,
       true
     );
   }

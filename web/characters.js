@@ -6,6 +6,12 @@ let nextPageBtn = null;
 let prevPageBtn = null;
 
 let currentPage = 1;
+let charactersSearchInput = null;
+
+function searchCharacters() {
+    this.event.preventDefault();
+    updateCharactersList();
+}
 
 window.onload = function () {
   charactersList = document.getElementById("characters-list");
@@ -14,6 +20,8 @@ window.onload = function () {
 
   nextPageBtn = document.getElementById("next-page");
   prevPageBtn = document.getElementById("prev-page");
+  
+  charactersSearchInput = document.getElementById("search");
 
   updateCharactersList();
 
@@ -52,13 +60,13 @@ function updateCharactersList() {
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/characters?order_by=name&page=${currentPage}`,
+      `https://api.jikan.moe/v4/characters?order_by=name&page=${currentPage}${charactersSearchInput.value ? `&q=${encodeURIComponent(charactersSearchInput.value)}` : ''}`,
       true
     );
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/top/characters?page=${currentPage}`,
+      `https://api.jikan.moe/v4/top/characters?page=${currentPage}${charactersSearchInput.value ? `&q=${encodeURIComponent(charactersSearchInput.value)}` : ''}`,
       true
     );
   }
