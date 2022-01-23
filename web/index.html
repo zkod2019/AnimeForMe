@@ -23,12 +23,12 @@ and open the template in the editor.
       </section>
 
         <div class="container">
-          <div id="btn">
-          <button type="button" class="toggle-signup" onclick="signup()">Sign Up</button>
-          <button type="button" class="toggle-login" onclick="login()">Log In</button>
-</div>
+            <div id="tabs">
+                <button type="button" class="tab" onclick="openTab(event, 'signupForm')">Sign Up</button>
+                <button type="button" class="tab" onclick="openTab(event, 'signInForm')">Log In</button>
+            </div>
             <form action="./SignUpServlet" method="POST" id="signupForm" class="form">
-              <input type="text" id="userName" placeholder="USERNAME" name="username" required /><br />
+              <input type="text" id="userName" placeholder="USERNAME" name="username" required /><br/>
               <input
                 type="password"
                 id="psw"
@@ -37,7 +37,7 @@ and open the template in the editor.
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}"
                 title="Must contain at least one number, one uppercase and lowercase letter, and 5-10 characters"
                 required
-              /><br />
+              /><br/><br/>
               <label for="TC">Agree to our terms</label>
               <input
                 type="checkbox"
@@ -45,8 +45,8 @@ and open the template in the editor.
                 name="TandC"
                 value="yes"
                 required
-              /><br />
-              <input type="submit" class="submit-button"/><input type="reset" class="reset-button"/>
+              /><br/><br/>
+              <input type="submit" class="submit-button"/><br/><input type="reset" class="reset-button"/>
             </form>
 
             <form id="signInForm" method="POST" class="form">
@@ -56,16 +56,16 @@ and open the template in the editor.
                 placeholder="USERNAME"
                 name="userName"
                 required
-              /><br />
+              /><br/>
               <input
                 type="password"
                 id="signInPassword"
                 placeholder="PASSWORD"
                 name="psw"
                 required
-              /><br />
+              /><br/>
               <p id="errorMessage"></p>
-              <input type="submit" class="submit-button"/><input type="reset" class="reset-button" />
+              <input type="submit" class="submit-button"/><br/><input type="reset" class="reset-button" />
             </form>
         </div>
     </main>
@@ -74,20 +74,18 @@ and open the template in the editor.
     </footer>
     
     <script>
-        var a = document.getElementById("btn");
-        var b = document.getElementById("signupForm");
-        var c = document.getElementById("signInForm");
-        
-        function signup(){
-            a.style.right= "110px";
-            b.style.right= "300px";
-            c.style.right= "20px";
-        }
-        
-        function login(){
-            a.style.right= "110px";
-            b.style.right= "30px";
-            c.style.right= "300px";
+        function openTab(evt, tabType) {
+            var i, form, tab;
+            form = document.getElementsByClassName("form");
+            for (i = 0; i < form.length; i++) {
+                form[i].style.display = "none";
+            }
+            tab = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tab.length; i++) {
+                tab[i].className = tab[i].className.replace(" active", "");
+            }
+            document.getElementById(tabType).style.display = "block";
+            evt.currentTarget.className += " active";
         }
     </script>
     

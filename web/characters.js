@@ -86,9 +86,10 @@ async function updateCharactersList() {
 
     json.data.forEach((characters) => {
       topCharactersAsListElements += `<li>
-                    <img src="${characters.images.jpg.image_url}" />
+                    <img src="${characters.images.jpg.image_url}" 
+                        style="width: auto; height: 160px;"/>
                     <h4>${characters.name}</h4>
-                    <button ${myCharacters.data.find(a => a.characterId === characters.mal_id) ? 'disabled' : ''} onclick="addCharacters()" style="float:right;" data-id="${
+                    <button ${myCharacters.data.find(a => a.characterId === characters.mal_id) ? 'disabled' : ''} onclick="addCharacters()" style="float:right;" class="addToMyList" data-id="${
                       characters.mal_id
                     }"> Add to My List
                     </button>

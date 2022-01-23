@@ -90,9 +90,9 @@ async function updateAnimeList() {
     json.data.forEach((anime) => {
       topAnimeAsListElements += `<li>
                     <img src="${anime.images.jpg.image_url}" 
-                        style="width: auto; height: 90px;" >
+                        style="width: auto; height: 160px;" >
                     <h4>${anime.title}</h4>
-                    <button ${myAnime.data.find(a => a.animeId === anime.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" data-id="${
+                    <button ${myAnime.data.find(a => a.animeId === anime.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" class="addToMyList" data-id="${
                       anime.mal_id
                     }"> Add to My List
                     </button>

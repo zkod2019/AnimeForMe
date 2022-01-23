@@ -38,33 +38,13 @@ main > section > img {
   object-fit: cover;
 }
 
-
-
-.toggle-signup{
+.tab{
     padding: 10px 30px;
     cursor: pointer;
     border: 0;
     outline: none; 
-    position: absolute;
     top: 200px;
     right: 200px;
-    font-size: 18px;
-    
-    border-radius: 30px;
-    transition: .5s;
-    background-color: lightpink;
-  color: hotpink;
-  font-weight: bold;
-}
-
-.toggle-login{
-    padding: 10px 30px;
-    cursor: pointer;
-    border: 0;
-    outline: none; 
-    position: absolute;
-    top: 200px;
-    right: 100px;
     font-size: 18px;
     border-radius: 30px;
     transition: .5s;
@@ -77,9 +57,9 @@ main > section > img {
     top: 180px;
     width: 400px;
     height: 300px;
+    right: 100px;
     padding: 40px 20px;
     margin: 6% auto;
-    position: absolute;
     box-sizing: border-box;
     background-image:linear-gradient(to bottom, yellow, pink, lightskyblue);
     border: 3px solid blue;
@@ -110,16 +90,6 @@ main > section > img {
     border-bottom: 1px solid black;
     outline: none;
     background: transparent;
-}
-
-#signupForm{
-    left: 150px;
-    
-}
-
-#signInForm{
-    left: 350px;
-    
 }
 
 .details{
@@ -158,7 +128,7 @@ main > section > img {
   color: hotpink;
   font-weight: bold;
   border-radius: 30px;
-    transition: .5s;
+  transition: .5s;
 }
 
 .layout{
@@ -181,7 +151,6 @@ main > section > img {
     float: left;
     position: relative;
     margin-right: 20px;
-    font-family: Verdana,Arial;
     font-size: 12px;
 }
 
@@ -195,4 +164,46 @@ main > section > img {
 #all-forums-list li {
     width: 50%;
     width: fit-content;
+}
+
+#anime-list, #manga-list, #characters-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+}
+
+.addToMyList{
+    float: left;
+    color: #0F141A;
+    background-color: #F6D7E8;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.addToMyList[disabled], .addToMyList[disabled]:hover {
+    float: left;
+    color: #0F141A;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    background-color:darkgray;
+    cursor: none;
+    border-radius: 0px;
+    transition: 0s;
+    font-weight:normal;
+}
+
+.addToMyList:hover{
+    background-color: lightpink;
+    color: hotpink;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+#yt-search-results{
+    
+    
 }

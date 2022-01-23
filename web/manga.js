@@ -86,9 +86,9 @@ async function updateMangaList() {
     json.data.forEach((manga) => {
       topMangaAsListElements += `<li>
                     <img src="${manga.images.jpg.image_url}" 
-                        style="width: auto; height: 90px;"/>
+                        style="width: auto; height: 160px;"/>
                     <h4>${manga.title}</h4>
-                    <button ${myManga.data.find(a => a.mangaId === manga.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" data-id="${
+                    <button ${myManga.data.find(a => a.mangaId === manga.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" class="addToMyList" data-id="${
                       manga.mal_id
                     }"> Add to My List
                     </button>
