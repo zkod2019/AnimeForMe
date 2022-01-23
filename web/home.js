@@ -47,7 +47,8 @@ async function updateMyForums() {
         <li>
             <img src="${json.images.jpg.image_url}" style="width: auto; height: 90px;">
             <h4>${json.title}</h4>
-            <button onclick="leaveForumHandler()" data-id="${json.mal_id}" data-option="${option}">Leave</button>
+            <button onclick="leaveForumHandler()" class="leaveButton" data-id="${json.mal_id}" data-option="${option}">Leave</button>
+            </br></br>
         </li>
     `;
   }
@@ -84,7 +85,14 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/manga/${pair.mangaId}`)
             ).json()
           ).data.title;
+          var mangaPic = (
+            await (
+              await fetch(`https://api.jikan.moe/v4/manga/${pair.mangaId}`)
+            ).json()
+          ).data.images.jpg.image_url;
           myMangaList.innerHTML += `<li>
+                    <img src="${mangaPic}" 
+                        style="width: auto; height: 160px;" >
                     <h4>${mangaHeading}</h4>
                     <select onchange="mangaStatusChange()" style="float:right;" data-id="${
                       pair.mangaId
@@ -102,7 +110,7 @@ function updateHome() {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
-                <button data-id="${pair.mangaId}" data-option="manga" onclick="removeACMHandler()">Remove from MyList</button>
+                <button data-id="${pair.mangaId}" data-option="manga" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -115,7 +123,14 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
             ).json()
           ).data.title;
+            var animePic = (
+            await (
+              await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
+            ).json()
+          ).data.images.jpg.image_url;
           myAnimeList.innerHTML += `<li>
+                    <img src="${animePic}" 
+                        style="width: auto; height: 160px;" >
                     <h4>${animeHeading}</h4>
                     <select onchange="animeStatusChange()" style="float:right;" data-id="${
                       pair.animeId
@@ -133,7 +148,7 @@ function updateHome() {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
-                    <button data-id="${pair.animeId}" data-option="anime" onclick="removeACMHandler()">Remove from MyList</button>
+                    <button data-id="${pair.animeId}" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -148,9 +163,19 @@ function updateHome() {
               )
             ).json()
           ).data.name;
+         var charactersPic = (
+          await (
+              await fetch(
+                `https://api.jikan.moe/v4/characters/${pair.characterId}`
+              )
+            ).json()
+          ).data.images.jpg.image_url;
           myCharactersList.innerHTML += `<li>
+                    <img src="${charactersPic}" 
+                        style="width: auto; height: 160px;" >
                     <h4>${charactersHeading}</h4>
-                <button data-id="${pair.characterId}" data-option="characters" onclick="removeACMHandler()">Remove from MyList</button>
+                    <button data-id="${pair.characterId}" data-option="characters" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
+                    </br></br>
                 </li>`;
         });
       });

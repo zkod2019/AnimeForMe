@@ -146,6 +146,9 @@ main > section > img {
     
 }
 
+#myMangaList{
+    float:next;
+}
 
 .anime-list{
     float: left;
@@ -172,18 +175,19 @@ main > section > img {
     list-style: none;
 }
 
-.addToMyList{
+.addToMyList, .leaveButton{
     float: left;
     color: #0F141A;
-    background-color: #F6D7E8;
+    background-color: #FFC2D1;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+    border-color: lightpink;
 }
 
 .addToMyList[disabled], .addToMyList[disabled]:hover {
     float: left;
-    color: #0F141A;
+    color: black;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -192,9 +196,10 @@ main > section > img {
     border-radius: 0px;
     transition: 0s;
     font-weight:normal;
+    border-color: darkgray;
 }
 
-.addToMyList:hover{
+.addToMyList, .leaveButton:hover{
     background-color: lightpink;
     color: hotpink;
     cursor: pointer;
@@ -202,6 +207,7 @@ main > section > img {
     border-radius: 30px;
     transition: .5s;
 }
+
 
 #yt-search-results{
     
