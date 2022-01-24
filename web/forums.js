@@ -185,7 +185,7 @@ async function updateMyForums() {
     let option = forum.animeId === null ? 1 : 0;
     myForumListElementsAsArray.push(`
       <li>
-        <button data-id="${json.mal_id}" data-option="${option}" ${
+        <button class="openForumBtn" data-id="${json.mal_id}" data-option="${option}" ${
       window.location.pathname.includes("forums")
         ? `onclick="myForumClickHandler()"`
         : ""
@@ -194,7 +194,7 @@ async function updateMyForums() {
           json.images.jpg.image_url
         }" style="width: auto; height: 90px;">
         <h4>${json.title}</h4>
-        <button onclick="leaveForumHandler()" data-id="${
+        <button class="leaveButton" onclick="leaveForumHandler()" data-id="${
           json.mal_id
         }" data-option="${option}">Leave</button>
       </li>

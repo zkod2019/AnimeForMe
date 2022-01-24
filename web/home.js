@@ -132,7 +132,8 @@ function updateHome() {
                     <img src="${animePic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${animeHeading}</h4>
-                    <select onchange="animeStatusChange()" style="float:right;" data-id="${
+                    <h5>Status</h5>
+                    <select onchange="animeStatusChange()" style="float:left;" data-id="${
                       pair.animeId
                     }">
                         <option value=0 ${

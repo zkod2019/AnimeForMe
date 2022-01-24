@@ -92,7 +92,7 @@ async function updateAllForumsList() {
             )
               ? "disabled"
               : ""
-          } onclick="joinForum()" style="float:right;" data-id="${
+          } onclick="joinForum()" class="addToMyList" style="float:right;" data-id="${
       json.mal_id
     }" data-option="${option}">Join</button>
         </li>

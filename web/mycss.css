@@ -111,6 +111,7 @@ main > section > img {
     float: left;
     display: block;
     color: #0F141A;
+    background-color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -175,39 +176,63 @@ main > section > img {
     list-style: none;
 }
 
-.addToMyList, .leaveButton{
-    float: left;
-    color: #0F141A;
+.addToMyList, .leaveButton, .openForumBtn{
+    color: black;
     background-color: #FFC2D1;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     border-color: lightpink;
 }
 
-.addToMyList[disabled], .addToMyList[disabled]:hover {
-    float: left;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    background-color:darkgray;
-    cursor: none;
-    border-radius: 0px;
-    transition: 0s;
-    font-weight:normal;
-    border-color: darkgray;
-}
-
-.addToMyList, .leaveButton:hover{
-    background-color: lightpink;
-    color: hotpink;
+.addToMyList:hover, .leaveButton:hover, .openForumBtn:hover{
+    background-color: hotpink;
+    border-color: hotpink;
+    color: white;
     cursor: pointer;
     font-weight: bold;
     border-radius: 30px;
     transition: .5s;
 }
 
+.addToMyList[disabled], .addToMyList[disabled]:hover {
+    opacity: 0.7;
+    float: left;
+    background-color: #FFC2D1;
+    border-color: lightpink;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: none;
+    border-radius: 0px;
+    transition: 0s;
+    font-weight:normal;
+}
+
+#prev-page, #next-page, #searchBtn, #allf-prev-page, #allf-next-page {
+    color:deeppink;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-color: hotpink;
+}
+
+#prev-page:hover, #next-page:hover, #searchBtn:hover,
+#allf-prev-page:hover, #allf-next-page:hover{
+    background-color: hotpink;
+    border-color: hotpink;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.myLists{
+    vertical-align: middle;
+}
 
 #yt-search-results{
     
