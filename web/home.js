@@ -128,10 +128,11 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
             ).json()
           ).data.images.jpg.image_url;
-          myAnimeList.innerHTML += `<li>
+          myAnimeList.innerHTML += `<li style="display:flex;">
                     <img src="${animePic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${animeHeading}</h4>
+                    <div>
                     <h5>Status</h5>
                     <select onchange="animeStatusChange()" style="float:left;" data-id="${
                       pair.animeId
@@ -150,6 +151,7 @@ function updateHome() {
                         }>Paused</option>
                     </select>
                     <button data-id="${pair.animeId}" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
+                    </div>
                 </li>`;
         });
       });

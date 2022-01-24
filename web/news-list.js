@@ -15,10 +15,12 @@ console.log(newsList);
     newsJson.slice(0, 5).forEach(article => {
         console.log(article);
         newsList.innerHTML += `
-            <li>
-                <img src="${article.imageUrl}" />
+            <li style="display:flex;">
+                <img src="${article.imageUrl}"/>
+                <div>
                 <a href="${article.url}"><h4>${article.title}</h4></a>
                 <p>${article.excerpt}</p>
+                </div>
             </li>
         `;
     });
