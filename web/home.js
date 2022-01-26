@@ -90,7 +90,7 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/manga/${pair.mangaId}`)
             ).json()
           ).data.images.jpg.image_url;
-          myMangaList.innerHTML += `<li>
+          myMangaList.innerHTML += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${mangaPic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${mangaHeading}</h4>
@@ -128,13 +128,11 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
             ).json()
           ).data.images.jpg.image_url;
-          myAnimeList.innerHTML += `<li style="display:flex;">
+          myAnimeList.innerHTML += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${animePic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${animeHeading}</h4>
-                    <div>
-                    <h5>Status</h5>
-                    <select onchange="animeStatusChange()" style="float:left;" data-id="${
+                    <select onchange="animeStatusChange()" style="float:right;" data-id="${
                       pair.animeId
                     }">
                         <option value=0 ${
@@ -151,7 +149,6 @@ function updateHome() {
                         }>Paused</option>
                     </select>
                     <button data-id="${pair.animeId}" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
-                    </div>
                 </li>`;
         });
       });
@@ -173,7 +170,7 @@ function updateHome() {
               )
             ).json()
           ).data.images.jpg.image_url;
-          myCharactersList.innerHTML += `<li>
+          myCharactersList.innerHTML += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${charactersPic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${charactersHeading}</h4>

@@ -38,31 +38,32 @@ main > section > img {
   object-fit: cover;
 }
 
+.container{
+    left: 60%;
+    top: 10%;
+    width: 350px;
+    height: 500px;
+    position:fixed;
+    object-fit:fill; 
+}
+
 .tab{
     padding: 10px 30px;
     cursor: pointer;
     border: 0;
     outline: none; 
-    top: 200px;
-    right: 200px;
     font-size: 18px;
-    border-radius: 30px;
-    transition: .5s;
+    border-radius: 10px;
     background-color: lightpink;
     color: hotpink;
     font-weight: bold;
 }
 
 .form{
-    top: 180px;
-    width: 400px;
-    height: 300px;
-    right: 100px;
     padding: 40px 20px;
     margin: 6% auto;
     box-sizing: border-box;
-    background-image:linear-gradient(to bottom, yellow, pink, lightskyblue);
-    border: 3px solid blue;
+    border: 3px solid pink;
 }
 
 .submit-button, .reset-button{
@@ -71,11 +72,11 @@ main > section > img {
     display: block;
     margin: auto;
     cursor: pointer;
-    background-color: lightpink;
-    color: hotpink;
+    background-color: hotpink;
+    color: white;
     font-weight: bold;
     border: 0;
-    outline: 1px solid blue;
+    outline: 1px solid deeppink;
     border-radius: 30px;
     transition: .5s;
 }
@@ -87,7 +88,7 @@ main > section > img {
     border-left: none;
     border-right: none;
     border-top: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid deeppink;
     outline: none;
     background: transparent;
 }
@@ -151,6 +152,12 @@ main > section > img {
     float:next;
 }
 
+.myLists{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+}
+
 .anime-list{
     float: left;
     position: relative;
@@ -210,7 +217,8 @@ main > section > img {
     font-weight:normal;
 }
 
-#prev-page, #next-page, #searchBtn, #allf-prev-page, #allf-next-page {
+#prev-page, #next-page, #searchBtn, #allf-prev-page, #allf-next-page,
+#my-next-page, #my-prev-page{
     color:deeppink;
     background-color: white;
     text-align: center;

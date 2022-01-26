@@ -88,7 +88,7 @@ async function updateAnimeList() {
     console.log(json.pagination);
 
     json.data.forEach((anime) => {
-      topAnimeAsListElements += `<li>
+      topAnimeAsListElements += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${anime.images.jpg.image_url}" 
                         style="width: auto; height: 160px;" >
                     <h4>${anime.title}</h4>

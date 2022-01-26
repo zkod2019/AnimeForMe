@@ -85,7 +85,7 @@ async function updateCharactersList() {
     console.log(json.pagination);
 
     json.data.forEach((characters) => {
-      topCharactersAsListElements += `<li>
+      topCharactersAsListElements += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${characters.images.jpg.image_url}" 
                         style="width: auto; height: 160px;"/>
                     <h4>${characters.name}</h4>

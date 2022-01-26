@@ -84,7 +84,7 @@ async function updateMangaList() {
     console.log(json.pagination);
 
     json.data.forEach((manga) => {
-      topMangaAsListElements += `<li>
+      topMangaAsListElements += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${manga.images.jpg.image_url}" 
                         style="width: auto; height: 160px;"/>
                     <h4>${manga.title}</h4>

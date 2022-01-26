@@ -79,7 +79,7 @@ async function updateAllForumsList() {
   function loopHandler(json, isAnime) {
     let option = isAnime ? 0 : 1;
     topAnimeAsListElements += `
-        <li>
+        <li style="padding: 20px 20px 20px 20px;">
           <img src="${
             json.images.jpg.image_url
           }" style="width: auto; height: 90px;">
