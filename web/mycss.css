@@ -8,9 +8,9 @@ and open the template in the editor.
     Author     : Zaya
 */
 @import "//rsms.me/inter/inter.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap');
 * {
-    font-family: "Inter", sans-serif;
+    font-family: 'Arima Madurai', cursive;
 }
 
 html,
@@ -39,11 +39,8 @@ main > section > img {
 }
 
 .container{
-    left: 60%;
-    top: 10%;
     width: 350px;
     height: 500px;
-    position:fixed;
     object-fit:fill; 
 }
 
@@ -55,8 +52,15 @@ main > section > img {
     font-size: 18px;
     border-radius: 10px;
     background-color: lightpink;
-    color: hotpink;
+    color: white;
     font-weight: bold;
+}
+
+.tab.active {
+    color: hotpink;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid hotpink;
 }
 
 .form{
@@ -141,11 +145,10 @@ main > section > img {
 
 .midLayout{
     position:relative; left: -10px; top:2px;
-    
 }
 
 .rightContent{
-    
+    font-size: 0.8rem;
 }
 
 #myMangaList{
@@ -154,7 +157,7 @@ main > section > img {
 
 .myLists{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     list-style: none;
 }
 
@@ -242,7 +245,6 @@ main > section > img {
     vertical-align: middle;
 }
 
-#yt-search-results{
-    
-    
+.news-list-el > img {
+    height: 10rem;
 }

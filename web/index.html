@@ -21,11 +21,11 @@ and open the template in the editor.
       <section>
         <img src="resources/frontpagepic.jpeg" />
       </section>
-
+        <section>
         <div class="container">
             <div id="tabs">
-                <button type="button" class="tab" onclick="openTab(event, 'signupForm')">Sign Up</button>
-                <button type="button" class="tab" onclick="openTab(event, 'signInForm')">Log In</button>
+                <button type="button" class="tab">Sign Up</button>
+                <button type="button" class="tab">Log In</button>
             </div>
             <form action="./SignUpServlet" method="POST" id="signupForm" class="form">
               <input type="text" id="userName" placeholder="USERNAME" name="username" required /><br/>
@@ -68,25 +68,29 @@ and open the template in the editor.
               <input type="submit" class="submit-button" value="Log In"/><br/><input type="reset" class="reset-button" />
             </form>
         </div>
+            </section>
     </main>
     <footer>
       <p id="copyright-footer">Copyright ©&ZK2022;</p>
     </footer>
     
     <script>
-        function openTab(evt, tabType) {
-            var i, form, tab;
-            form = document.getElementsByClassName("form");
-            for (i = 0; i < form.length; i++) {
-                form[i].style.display = "none";
-            }
-            tab = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tab.length; i++) {
-                tab[i].className = tab[i].className.replace(" active", "");
-            }
-            document.getElementById(tabType).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
+        const forms = [...document.getElementsByClassName("form")];
+        const tabs = [...document.getElementsByClassName("tab")];
+        
+        forms[0].style.display += "none";
+        tabs[1].classList.add("active");
+        
+        tabs.forEach((tab, i) => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(nestedTab => {
+                    nestedTab.classList.remove("active");
+                });
+                tab.classList.add("active");
+                forms.forEach(form => {form.style.display = "none";});
+                forms[i].style.display = "block";
+            });
+        });
     </script>
     
   </body>
