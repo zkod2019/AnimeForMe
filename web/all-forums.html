@@ -1,7 +1,11 @@
 <script src="./all-forums.js"></script>
-
-<div style="width: 500px; border: 1px solid #000">
+<div>
   <h3>All Forums</h3>
+   
+        <form onsubmit="searchForums()">
+            <input type="search" name="search-forums-input" id="search-forums-input" />
+            <button id="searchBtn" type="submit">Search</button>
+        </form>
   <label for="allf-sort-by">Sort:</label>
   <select id="allf-sort-by">
     <option value="alphabetically">Alphabetically</option>

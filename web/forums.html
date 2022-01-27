@@ -20,27 +20,25 @@ and open the template in the editor.
       </div>
 
       <div class="midLayout">
-        <h3 id="title">Forums</h3>
+        <h2 id="title">Forums</h2>
         <form id="new-post-form">
           <textarea id="post-content"></textarea>
-          <button type="submit">Create</button>
+          <button type="submit" id="createbtn">Create</button>
         </form>
         <ul type="none" id="posts-list"></ul>
       </div>
 
       <div class="rightLayout">
-        <div class="rightContent">
-          <div style="width: 500px; height: auto; border: 2px solid hotpink">
-            <h4>My Forums</h4>
+          <div class="rightSideBox">
+            <h3>My Forums</h3>
             <ul id="my-forums-list"></ul>
             <div>
               <button id="my-prev-page">Previous Page</button>
               <button id="my-next-page">Next Page</button>
             </div>
           </div>
-          <div class="__include" data-src="./all-forums.html"
-               style="width: 500px; height: auto; border: 1px solid hotpink">
-          </div>
+          <div class="rightSideBox">
+            <div class="__include" data-src="./all-forums.html"></div>
         </div>
       </div>
     </div>

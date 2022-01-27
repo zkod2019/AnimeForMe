@@ -94,7 +94,7 @@ function updateHome() {
                     <img src="${mangaPic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${mangaHeading}</h4>
-                    <select onchange="mangaStatusChange()" style="float:right;" data-id="${
+                    <select onchange="mangaStatusChange()" style="float:left;" data-id="${
                       pair.mangaId
                     }">
                         <option value=0 ${
@@ -110,6 +110,7 @@ function updateHome() {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
+                </br>
                 <button data-id="${pair.mangaId}" data-option="manga" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
@@ -132,7 +133,7 @@ function updateHome() {
                     <img src="${animePic}" 
                         style="width: auto; height: 160px;" >
                     <h4>${animeHeading}</h4>
-                    <select onchange="animeStatusChange()" style="float:right;" data-id="${
+                    <select onchange="animeStatusChange()" style="float:left;" data-id="${
                       pair.animeId
                     }">
                         <option value=0 ${
@@ -148,6 +149,7 @@ function updateHome() {
                           pair.status === 3 ? "selected" : ""
                         }>Paused</option>
                     </select>
+                </br>
                     <button data-id="${pair.animeId}" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });

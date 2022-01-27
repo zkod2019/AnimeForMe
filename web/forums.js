@@ -140,7 +140,7 @@ async function updateCurrentForumPosts(targetId, isAnime) {
       forumPostsList.innerHTML += `<li>
                 <p>${post.content}</p>
             <small>${post.authorName}</small>
-            ${sessionStorage.getItem("userName") === post.authorName ? `<button data-postId="${post.id}" onclick="deletePostHandler()">Delete Post</button>` : ""} 
+            ${sessionStorage.getItem("userName") === post.authorName ? `<button data-postId="${post.id}" onclick="deletePostHandler()" class="deletebtn">Delete Post</button>` : ""} 
             </li>`;
     });
   }
@@ -185,15 +185,15 @@ async function updateMyForums() {
     let option = forum.animeId === null ? 1 : 0;
     myForumListElementsAsArray.push(`
       <li>
+        <img src="${
+          json.images.jpg.image_url
+        }" style="width: auto; height: 90px;">
+        <h4>${json.title}</h4>
         <button class="openForumBtn" data-id="${json.mal_id}" data-option="${option}" ${
       window.location.pathname.includes("forums")
         ? `onclick="myForumClickHandler()"`
         : ""
     }>Open Forum</button>
-        <img src="${
-          json.images.jpg.image_url
-        }" style="width: auto; height: 90px;">
-        <h4>${json.title}</h4>
         <button class="leaveButton" onclick="leaveForumHandler()" data-id="${
           json.mal_id
         }" data-option="${option}">Leave</button>

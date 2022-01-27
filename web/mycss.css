@@ -147,7 +147,8 @@ main > section > img {
     position:relative; left: -10px; top:2px;
 }
 
-.rightContent{
+.rightSideBox{
+    border: 1px solid black;
     font-size: 0.8rem;
 }
 
@@ -186,7 +187,7 @@ main > section > img {
     list-style: none;
 }
 
-.addToMyList, .leaveButton, .openForumBtn{
+.addToMyList, .leaveButton, .openForumBtn, .deletebtn{
     color: black;
     background-color: #FFC2D1;
     text-align: center;
@@ -195,7 +196,7 @@ main > section > img {
     border-color: lightpink;
 }
 
-.addToMyList:hover, .leaveButton:hover, .openForumBtn:hover{
+.addToMyList:hover, .leaveButton:hover, .openForumBtn:hover, .deletebtn:hover{
     background-color: hotpink;
     border-color: hotpink;
     color: white;
@@ -221,7 +222,7 @@ main > section > img {
 }
 
 #prev-page, #next-page, #searchBtn, #allf-prev-page, #allf-next-page,
-#my-next-page, #my-prev-page{
+#my-next-page, #my-prev-page, #createbtn{
     color:deeppink;
     background-color: white;
     text-align: center;
@@ -247,4 +248,14 @@ main > section > img {
 
 .news-list-el > img {
     height: 10rem;
+}
+
+#post-content{
+    width: 35rem;
+    height: 5rem;
+}
+
+.aboutPics{
+    width: auto; 
+    height: 100px;
 }
