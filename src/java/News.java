@@ -25,7 +25,6 @@ public class News extends HttpServlet {
             Document doc = Jsoup.connect(page).get();
             Elements newsUnits = doc.body().getElementsByClass("news-list").first().select(".news-unit.clearfix.rect");
             
-            
             String newsAsList = "[";
             for (Element unit : newsUnits) {
                 log(unit.toString());

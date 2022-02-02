@@ -62,7 +62,12 @@ async function updateAllForumsList() {
 
   let animeRes = null;
   let mangaRes = null;
-
+  
+  /*
+   * Fetches all anime and manga, and makes them into forums that users can join.
+   * This is displayed on the side of web pages.
+   * Users can search through the forums, and have them dispayed alphabetically or by popularity.
+  */
   if (allfSortSelect.value === "alphabetically") {
     animeRes = await fetch(
       `https://api.jikan.moe/v4/anime?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}${

@@ -97,6 +97,10 @@ async function updateAnimeList() {
     console.log(json.data);
     console.log(json.pagination);
 
+    /*
+    * Existance of anime info is checked and displayed for every anime.
+    */
+
     json.data.forEach((anime) => {
       topAnimeAsListElements += `<li style="padding: 20px 20px 20px 20px;">
                     <img src="${anime.images.jpg.image_url}" 

@@ -75,7 +75,11 @@ function updateHome() {
     updateMyForums().then(() => {
       console.log("updated my forums");
     });
-
+    
+    /*
+    * All anime, manga, characters, and myForums information is retrieved and displayed.
+    * Users can change the status for the anime and manga, which calls the status change function.
+    */
     fetch(`./ACM?username=${userName}&option=manga`)
       .then((response) => response.json())
       .then((json) => {
@@ -188,6 +192,9 @@ function updateHome() {
   }
 }
 
+    /*
+    * Function called when leaveButton clicked. Removes selected item from the database.
+    */
 async function removeACMHandler() {
   let id = this.event.target.getAttribute("data-id");
   let option = this.event.target.getAttribute("data-option");
@@ -202,6 +209,10 @@ async function removeACMHandler() {
   updateHome();
 }
 
+    /*
+    * Both status change functions are used to change the status and save 
+    * it in the database.
+    */
 function mangaStatusChange() {
   var url = `./ACM?option=manga&mangaId=${this.event.target.getAttribute(
     "data-id"

@@ -106,7 +106,6 @@ public class Forums extends HttpServlet {
             out.close();
             try {insertStatement.close();} catch (SQLException ex) {throw new ServletException(ex);}
         }
-
     }
     
     
@@ -138,8 +137,5 @@ public class Forums extends HttpServlet {
             out.close();
             try {deleteStatement.close();} catch (SQLException ex) {throw new ServletException(ex);}
         }
-
     }
-    
-    
 }
