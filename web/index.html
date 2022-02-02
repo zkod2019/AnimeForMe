@@ -10,7 +10,6 @@ and open the template in the editor.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="mycss.css" />
-    <script src="./client-error.js"></script>
     <script src="./html-include.js"></script>
     <script src="./index.js"></script>
     <title>AnimeForMe</title>
@@ -27,7 +26,7 @@ and open the template in the editor.
                 <button type="button" class="tab">Sign Up</button>
                 <button type="button" class="tab">Log In</button>
             </div>
-            <form action="./SignUpServlet" method="POST" id="signupForm" class="form">
+            <form method="POST" id="signupForm" class="form">
               <input type="text" id="userName" placeholder="USERNAME" name="username" required /><br/>
               <input
                 type="password"
@@ -47,6 +46,8 @@ and open the template in the editor.
                 required
               /><br/><br/>
               <input type="submit" class="submit-button" value="Sign Up"/><br/><input type="reset" class="reset-button"/>
+              
+              <p id="errorMessageSignUp"></p>
             </form>
 
             <form id="signInForm" method="POST" class="form">

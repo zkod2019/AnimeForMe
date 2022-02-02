@@ -46,7 +46,7 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8"); // this was had "text/plain" before
+        response.setContentType("text/plain;charset=UTF-8"); // this was had "text/plain" before
         
         String username = null;
         String password = null;
@@ -94,23 +94,10 @@ public class SignUpServlet extends HttpServlet {
                     insertStmt.executeUpdate();
                     
                     response.setStatus(200);
-                    response.sendRedirect(request.getContextPath() + "/home.html");
+                    out.println("yoooo, new user pog");
                 } else {
                     response.setStatus(403);
-//                    String someMessage = "Error !";
-//                    PrintWriter uuu = response.getWriter();
-//                    uuu.print("<html><head>");
-//                    uuu.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
-//                    uuu.print("</head><body></body></html>");
-                   
-//                   PrintWriter uuu = response.getWriter();  
-//                    response.setContentType("text/html");  
-//                    uuu.println("<script type=\"text/javascript\">");  
-//                    uuu.println("alert('This user already exists, try a different name');");  
-//                    uuu.println("</script>");
-                   response.sendRedirect(request.getContextPath() + "/?errorType=username-taken");//userExist.html
-                    
-
+                    out.println("Username is taken.");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

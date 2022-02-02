@@ -31,7 +31,6 @@ CREATE TABLE CharactersRelation (
     PRIMARY KEY (username, characterId)
 );
 
-
 CREATE TABLE ForumMembers (
     username VARCHAR(15) NOT NULL,
     targetId INTEGER NOT NULL,

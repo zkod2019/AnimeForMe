@@ -107,6 +107,7 @@ async function updateCurrentForumPosts(targetId, isAnime) {
   forumPostsList.innerHTML = "";
 
   currentlySelectedForumTargetId = targetId;
+  // option is an enum(0, 1) where enum(anime, manga)
   currentlySelectedForumOption = isAnime ? 0 : 1;
 
   if (targetId === null || isAnime === null) {
