@@ -47,7 +47,9 @@ public class Forums extends HttpServlet {
         PreparedStatement getForumsStatement = null;
         ResultSet getForumsRs = null;
         try {
-            getForumsStatement = conn.prepareStatement("SELECT * FROM ForumMembers WHERE username = (?) ORDER BY optionEnum, targetId");
+            getForumsStatement = conn.prepareStatement(
+                    "SELECT * FROM ForumMembers WHERE username = (?) ORDER BY optionEnum, targetId"
+            );
             getForumsStatement.setString(1, username);
             getForumsRs =  getForumsStatement.executeQuery();
             String outputArray = "[";
@@ -88,7 +90,9 @@ public class Forums extends HttpServlet {
         
         PreparedStatement insertStatement = null;
         try {
-            insertStatement = conn.prepareStatement("INSERT INTO ForumMembers(username, targetId, optionEnum) VALUES ((?), (?), (?))");
+            insertStatement = conn.prepareStatement(
+                    "INSERT INTO ForumMembers(username, targetId, optionEnum) VALUES ((?), (?), (?))"
+            );
             insertStatement.setString(1, username);
             insertStatement.setInt(2, targetId);
             insertStatement.setInt(3, option);
@@ -118,7 +122,9 @@ public class Forums extends HttpServlet {
         
         PreparedStatement deleteStatement = null;
         try {
-            deleteStatement = conn.prepareStatement("DELETE FROM ForumMembers WHERE username =(?) AND targetId =(?) AND optionEnum =(?)");
+            deleteStatement = conn.prepareStatement(
+                    "DELETE FROM ForumMembers WHERE username =(?) AND targetId =(?) AND optionEnum =(?)"
+            );
             deleteStatement.setString(1, username);
             deleteStatement.setInt(2, targetId);
             deleteStatement.setInt(3, option);

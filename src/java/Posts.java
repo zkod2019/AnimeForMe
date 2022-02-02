@@ -92,7 +92,9 @@ public class Posts extends HttpServlet {
         
         PreparedStatement insertStatement = null;
         try {
-            insertStatement = conn.prepareStatement("INSERT INTO Posts(postId, authorName, targetId, optionEnum, content ) VALUES (DEFAULT,(?), (?), (?), (?))");
+            insertStatement = conn.prepareStatement(
+                    "INSERT INTO Posts(postId, authorName, targetId, optionEnum, content ) VALUES (DEFAULT,(?), (?), (?), (?))"
+            );
             insertStatement.setString(1, authorName);
             insertStatement.setInt(2, targetId);
             insertStatement.setInt(3, option);
@@ -131,8 +133,5 @@ public class Posts extends HttpServlet {
             out.close();
             try {deleteStatement.close();} catch (SQLException ex) {throw new ServletException(ex);}
         }
-
     }
-    
-   
 }

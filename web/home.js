@@ -54,7 +54,7 @@ async function updateMyForums() {
   }
 }
 
-window.onload  = updateHome;
+window.onload = updateHome;
 
 function updateHome() {
   var hi = document.getElementById("hi");
@@ -111,7 +111,9 @@ function updateHome() {
                         }>Paused</option>
                     </select>
                 </br>
-                <button data-id="${pair.mangaId}" data-option="manga" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
+                <button data-id="${
+                  pair.mangaId
+                }" data-option="manga" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -124,7 +126,7 @@ function updateHome() {
               await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
             ).json()
           ).data.title;
-            var animePic = (
+          var animePic = (
             await (
               await fetch(`https://api.jikan.moe/v4/anime/${pair.animeId}`)
             ).json()
@@ -150,7 +152,9 @@ function updateHome() {
                         }>Paused</option>
                     </select>
                 </br>
-                    <button data-id="${pair.animeId}" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
+                    <button data-id="${
+                      pair.animeId
+                    }" data-option="anime" class="leaveButton" onclick="removeACMHandler()">Remove from MyList</button>
                 </li>`;
         });
       });
@@ -165,8 +169,8 @@ function updateHome() {
               )
             ).json()
           ).data.name;
-         var charactersPic = (
-          await (
+          var charactersPic = (
+            await (
               await fetch(
                 `https://api.jikan.moe/v4/characters/${pair.characterId}`
               )
@@ -182,16 +186,20 @@ function updateHome() {
         });
       });
   }
-};
+}
 
-async function removeACMHandler(){
-    let id = this.event.target.getAttribute("data-id");
-    let option = this.event.target.getAttribute("data-option");
-    
-    console.log(id);
-    await fetch(`./ACM?${option==="characters"?"character":option}Id=${id}&option=${option}&username=${sessionStorage.getItem("userName")}`, {method : "DELETE"});
-    updateHome();
-    
+async function removeACMHandler() {
+  let id = this.event.target.getAttribute("data-id");
+  let option = this.event.target.getAttribute("data-option");
+
+  console.log(id);
+  await fetch(
+    `./ACM?${
+      option === "characters" ? "character" : option
+    }Id=${id}&option=${option}&username=${sessionStorage.getItem("userName")}`,
+    { method: "DELETE" }
+  );
+  updateHome();
 }
 
 function mangaStatusChange() {

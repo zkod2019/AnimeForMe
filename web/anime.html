@@ -23,19 +23,19 @@ and open the template in the editor.
       <div class="midLayout">
         <h2>Anime</h2>
         <h3>All Anime</h3>
-        
+
         <form onsubmit="searchAnime()">
-            <input type="search" name="search" id="search" />
-            <button id="searchBtn" type="submit">Search</button>
+          <input type="search" name="search" id="search" />
+          <button id="searchBtn" type="submit">Search</button>
         </form>
-        
+
         <label for="sort-by">Sort:</label>
         <select id="sort-by">
           <option value="alphabetically">Alphabetically</option>
           <option value="popularity">By Popularity</option>
         </select>
         <ul id="anime-list"></ul>
-        <div style="display:flex">
+        <div style="display: flex">
           <button id="prev-page">Previous Page</button>
           <button id="next-page">Next Page</button>
         </div>
@@ -43,17 +43,17 @@ and open the template in the editor.
 
       <div class="rightLayout">
         <div class="rightSideBox">
-            <h3>YouTube Search</h3>
-            <div class="__include" data-src="./yt-search.html"></div>
+          <h3>YouTube Search</h3>
+          <div class="__include" data-src="./yt-search.html"></div>
         </div>
         <br />
         <div class="rightSideBox">
-            <h3>Recent News</h3>
-            <div class="__include" data-src="./news.html"></div>
+          <h3>Recent News</h3>
+          <div class="__include" data-src="./news.html"></div>
         </div>
-          <br />
+        <br />
         <div class="rightSideBox">
-            <div class="__include" data-src="./all-forums.html"></div>
+          <div class="__include" data-src="./all-forums.html"></div>
         </div>
       </div>
     </div>

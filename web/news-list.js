@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,12 +9,12 @@ const newsList = document.getElementById("news-list");
 console.log(newsList);
 
 (async () => {
-    const newsRes = await fetch("./News");
-    const newsJson = await newsRes.json();
-    console.log(newsJson);
-    newsJson.slice(0, 5).forEach(article => {
-        console.log(article);
-        newsList.innerHTML += `
+  const newsRes = await fetch("./News");
+  const newsJson = await newsRes.json();
+  console.log(newsJson);
+  newsJson.slice(0, 5).forEach((article) => {
+    console.log(article);
+    newsList.innerHTML += `
             <li style="display:flex;" class="news-list-el">
                 <img src="${article.imageUrl}"/>
                 <div>
@@ -23,5 +23,5 @@ console.log(newsList);
                 </div>
             </li>
         `;
-    });
+  });
 })();

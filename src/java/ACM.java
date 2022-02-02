@@ -23,20 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Zaya
  */
 public class ACM extends HttpServlet {
-//    private int statusStringToInt(String status) {
-//        if (status.equals("none")) {
-//            return 0;
-//        } else if (status.equals("completed")) {
-//            return 1;
-//        } else if (status.equals("active")){
-//            return 2;
-//        }else if (status.equals("paused")){
-//            return 3;
-//        }else{
-//            return -1;
-//        }
-//    }
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

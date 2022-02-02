@@ -20,79 +20,101 @@ and open the template in the editor.
       <section>
         <img src="resources/frontpagepic.jpeg" />
       </section>
-        <section>
+      <section>
         <div class="container">
-            <div id="tabs">
-                <button type="button" class="tab">Sign Up</button>
-                <button type="button" class="tab">Log In</button>
-            </div>
-            <form method="POST" id="signupForm" class="form">
-              <input type="text" id="userName" placeholder="USERNAME" name="username" required /><br/>
-              <input
-                type="password"
-                id="psw"
-                placeholder="PASSWORD"
-                name="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}"
-                title="Must contain at least one number, one uppercase and lowercase letter, and 5-10 characters"
-                required
-              /><br/><br/>
-              <label for="TC">Agree to our terms</label>
-              <input
-                type="checkbox"
-                id="TC"
-                name="TandC"
-                value="yes"
-                required
-              /><br/><br/>
-              <input type="submit" class="submit-button" value="Sign Up"/><br/><input type="reset" class="reset-button"/>
-              
-              <p id="errorMessageSignUp"></p>
-            </form>
+          <div id="tabs">
+            <button type="button" class="tab">Sign Up</button>
+            <button type="button" class="tab">Log In</button>
+          </div>
+          <form method="POST" id="signupForm" class="form">
+            <input
+              type="text"
+              id="userName"
+              placeholder="USERNAME"
+              name="username"
+              required
+            /><br />
+            <input
+              type="password"
+              id="psw"
+              placeholder="PASSWORD"
+              name="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}"
+              title="Must contain at least one number, one uppercase and lowercase letter, and 5-10 characters"
+              required
+            /><br />
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="CONFIRM PASSWORD"
+              name="confirmPassword"
+              required
+            /><br /><br />
+            <label for="TC">Agree to our terms</label>
+            <input
+              type="checkbox"
+              id="TC"
+              name="TandC"
+              value="yes"
+              required
+            /><br /><br />
+            <input
+              type="submit"
+              class="submit-button"
+              value="Sign Up"
+            /><br /><input type="reset" class="reset-button" />
 
-            <form id="signInForm" method="POST" class="form">
-              <input
-                type="text"
-                id="signInUserName"
-                placeholder="USERNAME"
-                name="userName"
-                required
-              /><br/>
-              <input
-                type="password"
-                id="signInPassword"
-                placeholder="PASSWORD"
-                name="psw"
-                required
-              /><br/>
-              <p id="errorMessage"></p>
-              <input type="submit" class="submit-button" value="Log In"/><br/><input type="reset" class="reset-button" />
-            </form>
+            <p id="errorMessageSignUp"></p>
+          </form>
+
+          <form id="signInForm" method="POST" class="form">
+            <input
+              type="text"
+              id="signInUserName"
+              placeholder="USERNAME"
+              name="userName"
+              required
+            /><br />
+            <input
+              type="password"
+              id="signInPassword"
+              placeholder="PASSWORD"
+              name="psw"
+              required
+            /><br />
+            <p id="errorMessage"></p>
+            <input
+              type="submit"
+              class="submit-button"
+              value="Log In"
+            /><br /><input type="reset" class="reset-button" />
+          </form>
         </div>
-            </section>
+      </section>
     </main>
     <footer>
       <p id="copyright-footer">Copyright ©&ZK2022;</p>
     </footer>
-    
+
     <script>
-        const forms = [...document.getElementsByClassName("form")];
-        const tabs = [...document.getElementsByClassName("tab")];
-        
-        forms[0].style.display += "none";
-        tabs[1].classList.add("active");
-        
-        tabs.forEach((tab, i) => {
-            tab.addEventListener("click", () => {
-                tabs.forEach(nestedTab => {
-                    nestedTab.classList.remove("active");
-                });
-                tab.classList.add("active");
-                forms.forEach(form => {form.style.display = "none";});
-                forms[i].style.display = "block";
-            });
+      const forms = [...document.getElementsByClassName("form")];
+      const tabs = [...document.getElementsByClassName("tab")];
+
+      forms[0].style.display += "none";
+      tabs[1].classList.add("active");
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((nestedTab) => {
+            nestedTab.classList.remove("active");
+          });
+          tab.classList.add("active");
+          forms.forEach((form) => {
+            form.style.display = "none";
+          });
+          forms[i].style.display = "block";
         });
+      });
     </script>
-    
   </body>
 </html>

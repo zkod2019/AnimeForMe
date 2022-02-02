@@ -8,9 +8,9 @@ and open the template in the editor.
     Author     : Zaya
 */
 @import "//rsms.me/inter/inter.css";
-@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap");
 * {
-    font-family: 'Arima Madurai', cursive;
+  font-family: "Arima Madurai", cursive;
 }
 
 html,
@@ -38,95 +38,100 @@ main > section > img {
   object-fit: cover;
 }
 
-.container{
-    width: 350px;
-    height: 500px;
-    object-fit:fill; 
+.container {
+  width: 350px;
+  height: 500px;
+  object-fit: fill;
 }
 
-.tab{
-    padding: 10px 30px;
-    cursor: pointer;
-    border: 0;
-    outline: none; 
-    font-size: 18px;
-    border-radius: 10px;
-    background-color: lightpink;
-    color: white;
-    font-weight: bold;
+.tab {
+  padding: 10px 30px;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 10px;
+  background-color: lightpink;
+  color: white;
+  font-weight: bold;
 }
 
 .tab.active {
-    color: hotpink;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid hotpink;
+  color: hotpink;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid hotpink;
 }
 
-.form{
-    padding: 40px 20px;
-    margin: 6% auto;
-    box-sizing: border-box;
-    border: 3px solid pink;
+.form {
+  padding: 40px 20px;
+  margin: 6% auto;
+  box-sizing: border-box;
+  border: 3px solid pink;
 }
 
-.submit-button, .reset-button{
-    width: 75%;
-    padding: 10px 30px;
-    display: block;
-    margin: auto;
-    cursor: pointer;
-    background-color: hotpink;
-    color: white;
-    font-weight: bold;
-    border: 0;
-    outline: 1px solid deeppink;
-    border-radius: 30px;
-    transition: .5s;
+.submit-button,
+.reset-button {
+  width: 75%;
+  padding: 10px 30px;
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  background-color: hotpink;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  outline: 1px solid deeppink;
+  border-radius: 30px;
+  transition: 0.5s;
 }
 
-#userName, #signInUserName, #psw, #signInPassword{
-    width: 100%;
-    padding: 10px 0;
-    margin: 5px 0;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-bottom: 1px solid deeppink;
-    outline: none;
-    background: transparent;
+#userName,
+#signInUserName,
+#psw,
+#confirmPassword,
+#signInPassword {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid deeppink;
+  outline: none;
+  background: transparent;
 }
 
-.details{
-    display:flex;
-    justify-content: center;
+.details {
+  display: flex;
+  justify-content: center;
 }
 
-.navigation{
-    position: fixed;
-    font-size: 12px;
-    color: #0F141A;
-    float: left;
-    padding: 0px 5px ;
-    background-color: white;
-    height: 100%;
+.navigation {
+  position: fixed;
+  font-size: 12px;
+  color: #0f141a;
+  float: left;
+  padding: 0px 5px;
+  background-color: white;
+  height: 100%;
 }
 
 .navigation a {
-    float: left;
-    display: block;
-    color: #0F141A;
-    background-color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 18px;
+  float: left;
+  display: block;
+  color: #0f141a;
+  background-color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 .navigation > button {
-    position:absolute;
-    bottom: 5%;
-    left: 20%;
+  position: absolute;
+  bottom: 5%;
+  left: 20%;
 }
 
 .navigation a:hover {
@@ -134,128 +139,148 @@ main > section > img {
   color: hotpink;
   font-weight: bold;
   border-radius: 30px;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.layout{
-    display: grid;
-    grid-template-columns: 270px auto 450px; 
-    margin: 0 auto;
+.layout {
+  display: grid;
+  grid-template-columns: 270px auto 450px;
+  margin: 0 auto;
 }
 
-.midLayout{
-    position:relative; left: -10px; top:2px;
+.midLayout {
+  position: relative;
+  left: -10px;
+  top: 2px;
 }
 
-.rightSideBox{
-    border: 1px solid black;
-    font-size: 0.8rem;
+.rightSideBox {
+  border: 1px solid black;
+  font-size: 0.8rem;
 }
 
-#myMangaList{
-    float:next;
+#myMangaList {
+  float: next;
 }
 
-.myLists{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    list-style: none;
+.myLists {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
 }
 
-.anime-list{
-    float: left;
-    position: relative;
-    margin-right: 20px;
-    font-size: 12px;
+.anime-list {
+  float: left;
+  position: relative;
+  margin-right: 20px;
+  font-size: 12px;
 }
 
 #all-forums-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  list-style: none;
 }
 
 #all-forums-list li {
-    width: 50%;
-    width: fit-content;
+  width: 50%;
+  width: fit-content;
 }
 
-#anime-list, #manga-list, #characters-list{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    list-style: none;
+#anime-list,
+#manga-list,
+#characters-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
 }
 
-.addToMyList, .leaveButton, .openForumBtn, .deletebtn{
-    color: black;
-    background-color: #FFC2D1;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border-color: lightpink;
+.addToMyList,
+.leaveButton,
+.openForumBtn,
+.deletebtn {
+  color: black;
+  background-color: #ffc2d1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  border-color: lightpink;
 }
 
-.addToMyList:hover, .leaveButton:hover, .openForumBtn:hover, .deletebtn:hover{
-    background-color: hotpink;
-    border-color: hotpink;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 30px;
-    transition: .5s;
+.addToMyList:hover,
+.leaveButton:hover,
+.openForumBtn:hover,
+.deletebtn:hover {
+  background-color: hotpink;
+  border-color: hotpink;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.5s;
 }
 
-.addToMyList[disabled], .addToMyList[disabled]:hover {
-    opacity: 0.7;
-    float: left;
-    background-color: #FFC2D1;
-    border-color: lightpink;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    cursor: none;
-    border-radius: 0px;
-    transition: 0s;
-    font-weight:normal;
+.addToMyList[disabled],
+.addToMyList[disabled]:hover {
+  opacity: 0.7;
+  float: left;
+  background-color: #ffc2d1;
+  border-color: lightpink;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: none;
+  border-radius: 0px;
+  transition: 0s;
+  font-weight: normal;
 }
 
-#prev-page, #next-page, #searchBtn, #allf-prev-page, #allf-next-page,
-#my-next-page, #my-prev-page, #createbtn{
-    color:deeppink;
-    background-color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border-color: hotpink;
+#prev-page,
+#next-page,
+#searchBtn,
+#allf-prev-page,
+#allf-next-page,
+#my-next-page,
+#my-prev-page,
+#createbtn {
+  color: deeppink;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  border-color: hotpink;
 }
 
-#prev-page:hover, #next-page:hover, #searchBtn:hover,
-#allf-prev-page:hover, #allf-next-page:hover{
-    background-color: hotpink;
-    border-color: hotpink;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 30px;
-    transition: .5s;
+#prev-page:hover,
+#next-page:hover,
+#searchBtn:hover,
+#allf-prev-page:hover,
+#allf-next-page:hover {
+  background-color: hotpink;
+  border-color: hotpink;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.5s;
 }
 
-.myLists{
-    vertical-align: middle;
+.myLists {
+  vertical-align: middle;
 }
 
 .news-list-el > img {
-    height: 10rem;
+  height: 10rem;
 }
 
-#post-content{
-    width: 35rem;
-    height: 5rem;
+#post-content {
+  width: 35rem;
+  height: 5rem;
 }
 
-.aboutPics{
-    width: auto; 
-    height: 100px;
+.aboutPics {
+  width: auto;
+  height: 100px;
 }

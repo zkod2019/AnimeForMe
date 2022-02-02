@@ -23,8 +23,6 @@ async function updateYtSearchResults(searchString) {
   ytJson.items.forEach((video) => {
     resultsList.innerHTML += `<li><iframe id="ytplayer" type="text/html" width="50%" height="50%"
   src="https://www.youtube.com/embed/${video.id.videoId}"
-  frameborder="0"></iframe><h4>${
-      video.snippet.title
-    }</h4><p>${video.snippet.description}</p></li>`;
+  frameborder="0"></iframe><h4>${video.snippet.title}</h4><p>${video.snippet.description}</p></li>`;
   });
 }

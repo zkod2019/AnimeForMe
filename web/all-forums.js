@@ -15,14 +15,13 @@ function joinForum() {
         updateMyForums();
       }
     });
-
 }
 
 let searchInputEl = document.getElementById("search-forums-input");
 function searchForums() {
-    this.event.preventDefault();
-    searchInputEl = document.getElementById("search-forums-input");
-    updateAllForumsList();
+  this.event.preventDefault();
+  searchInputEl = document.getElementById("search-forums-input");
+  updateAllForumsList();
 }
 
 let allfCurrentPage = 1;
@@ -66,17 +65,25 @@ async function updateAllForumsList() {
 
   if (allfSortSelect.value === "alphabetically") {
     animeRes = await fetch(
-      `https://api.jikan.moe/v4/anime?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}${searchInputEl.value ? `&q=${searchInputEl.value}` : ''}`
+      `https://api.jikan.moe/v4/anime?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}${
+        searchInputEl.value ? `&q=${searchInputEl.value}` : ""
+      }`
     );
     mangaRes = await fetch(
-      `https://api.jikan.moe/v4/manga?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}${searchInputEl.value ? `&q=${searchInputEl.value}` : ''}`
+      `https://api.jikan.moe/v4/manga?limit=${allfPageLimit}&order_by=title&page=${allfCurrentPage}${
+        searchInputEl.value ? `&q=${searchInputEl.value}` : ""
+      }`
     );
   } else if (allfSortSelect.value === "popularity") {
     animeRes = await fetch(
-      `https://api.jikan.moe/v4/top/anime?limit=${allfPageLimit}&page=${allfCurrentPage}${searchInputEl.value ? `&q=${searchInputEl.value}` : ''}`
+      `https://api.jikan.moe/v4/top/anime?limit=${allfPageLimit}&page=${allfCurrentPage}${
+        searchInputEl.value ? `&q=${searchInputEl.value}` : ""
+      }`
     );
     mangaRes = await fetch(
-      `https://api.jikan.moe/v4/top/manga?limit=${allfPageLimit}&page=${allfCurrentPage}${searchInputEl.value ? `&q=${searchInputEl.value}` : ''}`
+      `https://api.jikan.moe/v4/top/manga?limit=${allfPageLimit}&page=${allfCurrentPage}${
+        searchInputEl.value ? `&q=${searchInputEl.value}` : ""
+      }`
     );
   }
 

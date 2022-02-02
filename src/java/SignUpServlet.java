@@ -46,7 +46,7 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/plain;charset=UTF-8"); // this was had "text/plain" before
+        response.setContentType("text/plain;charset=UTF-8");
         
         String username = null;
         String password = null;
@@ -115,8 +115,6 @@ public class SignUpServlet extends HttpServlet {
                 try { conn.close(); } catch (Exception e) { /* Ignored */ }
             }
         }
-        
-        
     }
     
     /**
@@ -128,5 +126,4 @@ public class SignUpServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

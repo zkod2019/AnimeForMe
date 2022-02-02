@@ -10,18 +10,18 @@ let animeSearchInput = null;
 let currentPage = 1;
 
 function searchAnime() {
-    this.event.preventDefault();
-    updateAnimeList();
+  this.event.preventDefault();
+  updateAnimeList();
 }
 
-window.onload = function() {    
+window.onload = function () {
   animeList = document.getElementById("anime-list");
   pageList = document.getElementById("page-list");
   sortSelect = document.getElementById("sort-by");
 
   nextPageBtn = document.getElementById("next-page");
   prevPageBtn = document.getElementById("prev-page");
-  
+
   animeSearchInput = document.getElementById("search");
 
   updateAnimeList();
@@ -51,31 +51,41 @@ function statusChangeListener() {
     method: "PUT",
   })
     .then((response) => response.text())
-    .then(responseText => {
-        console.log(responseText);
-        updateAnimeList();
+    .then((responseText) => {
+      console.log(responseText);
+      updateAnimeList();
     });
 }
 
 async function updateAnimeList() {
-    const myAnimeRes = await fetch(`./ACM?username=${sessionStorage.getItem("userName")}&option=anime`);
-    const myAnime = await myAnimeRes.json();
-    
-    console.log(myAnime);
-            
+  const myAnimeRes = await fetch(
+    `./ACM?username=${sessionStorage.getItem("userName")}&option=anime`
+  );
+  const myAnime = await myAnimeRes.json();
+
+  console.log(myAnime);
+
   const req = new XMLHttpRequest();
   req.responseType = "json";
 
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/anime?sfw=true&order_by=title&page=${currentPage}${animeSearchInput.value ? `&q=${encodeURIComponent(animeSearchInput.value)}` : ''}`,
+      `https://api.jikan.moe/v4/anime?sfw=true&order_by=title&page=${currentPage}${
+        animeSearchInput.value
+          ? `&q=${encodeURIComponent(animeSearchInput.value)}`
+          : ""
+      }`,
       true
     );
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/top/anime?page=${currentPage}${animeSearchInput.value ? `&q=${encodeURIComponent(animeSearchInput.value)}` : ''}`,
+      `https://api.jikan.moe/v4/top/anime?page=${currentPage}${
+        animeSearchInput.value
+          ? `&q=${encodeURIComponent(animeSearchInput.value)}`
+          : ""
+      }`,
       true
     );
   }
@@ -92,9 +102,13 @@ async function updateAnimeList() {
                     <img src="${anime.images.jpg.image_url}" 
                         style="width: auto; height: 160px;" >
                     <h4>${anime.title}</h4>
-                    <button ${myAnime.data.find(a => a.animeId === anime.mal_id) ? 'disabled' : ''} onclick="statusChangeListener()" style="float:right;" class="addToMyList" data-id="${
-                      anime.mal_id
-                    }"> Add to My List
+                    <button ${
+                      myAnime.data.find((a) => a.animeId === anime.mal_id)
+                        ? "disabled"
+                        : ""
+                    } onclick="statusChangeListener()" style="float:right;" class="addToMyList" data-id="${
+        anime.mal_id
+      }"> Add to My List
                     </button>
                     ${
                       anime.rank ||

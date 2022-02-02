@@ -9,8 +9,8 @@ let currentPage = 1;
 let charactersSearchInput = null;
 
 function searchCharacters() {
-    this.event.preventDefault();
-    updateCharactersList();
+  this.event.preventDefault();
+  updateCharactersList();
 }
 
 window.onload = function () {
@@ -20,7 +20,7 @@ window.onload = function () {
 
   nextPageBtn = document.getElementById("next-page");
   prevPageBtn = document.getElementById("prev-page");
-  
+
   charactersSearchInput = document.getElementById("search");
 
   updateCharactersList();
@@ -50,29 +50,39 @@ function addCharacters() {
     method: "PUT",
   })
     .then((response) => response.text())
-     .then(responseText => {
-        console.log(responseText);
-        updateCharactersList();
+    .then((responseText) => {
+      console.log(responseText);
+      updateCharactersList();
     });
 }
 
 async function updateCharactersList() {
-    const myCharactersRes = await fetch(`./ACM?username=${sessionStorage.getItem("userName")}&option=characters`);
-    const myCharacters = await myCharactersRes.json();
-    
+  const myCharactersRes = await fetch(
+    `./ACM?username=${sessionStorage.getItem("userName")}&option=characters`
+  );
+  const myCharacters = await myCharactersRes.json();
+
   const req = new XMLHttpRequest();
   req.responseType = "json";
 
   if (sortSelect.value === "alphabetically") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/characters?order_by=name&page=${currentPage}${charactersSearchInput.value ? `&q=${encodeURIComponent(charactersSearchInput.value)}` : ''}`,
+      `https://api.jikan.moe/v4/characters?order_by=name&page=${currentPage}${
+        charactersSearchInput.value
+          ? `&q=${encodeURIComponent(charactersSearchInput.value)}`
+          : ""
+      }`,
       true
     );
   } else if (sortSelect.value === "popularity") {
     req.open(
       "GET",
-      `https://api.jikan.moe/v4/top/characters?page=${currentPage}${charactersSearchInput.value ? `&q=${encodeURIComponent(charactersSearchInput.value)}` : ''}`,
+      `https://api.jikan.moe/v4/top/characters?page=${currentPage}${
+        charactersSearchInput.value
+          ? `&q=${encodeURIComponent(charactersSearchInput.value)}`
+          : ""
+      }`,
       true
     );
   }
@@ -89,9 +99,15 @@ async function updateCharactersList() {
                     <img src="${characters.images.jpg.image_url}" 
                         style="width: auto; height: 160px;"/>
                     <h4>${characters.name}</h4>
-                    <button ${myCharacters.data.find(a => a.characterId === characters.mal_id) ? 'disabled' : ''} onclick="addCharacters()" style="float:right;" class="addToMyList" data-id="${
-                      characters.mal_id
-                    }"> Add to My List
+                    <button ${
+                      myCharacters.data.find(
+                        (a) => a.characterId === characters.mal_id
+                      )
+                        ? "disabled"
+                        : ""
+                    } onclick="addCharacters()" style="float:right;" class="addToMyList" data-id="${
+        characters.mal_id
+      }"> Add to My List
                     </button>
                     ${
                       characters.about

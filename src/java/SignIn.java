@@ -102,8 +102,6 @@ public class SignIn extends HttpServlet {
                 try { conn.close(); } catch (Exception e) { /* Ignored */ }
             }
         }
-        
-        
     }
     
     /**
@@ -115,5 +113,4 @@ public class SignIn extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

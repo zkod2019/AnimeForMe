@@ -141,22 +141,25 @@ async function updateCurrentForumPosts(targetId, isAnime) {
       forumPostsList.innerHTML += `<li>
                 <p>${post.content}</p>
             <small>${post.authorName}</small>
-            ${sessionStorage.getItem("userName") === post.authorName ? `<button data-postId="${post.id}" onclick="deletePostHandler()" class="deletebtn">Delete Post</button>` : ""} 
+            ${
+              sessionStorage.getItem("userName") === post.authorName
+                ? `<button data-postId="${post.id}" onclick="deletePostHandler()" class="deletebtn">Delete Post</button>`
+                : ""
+            } 
             </li>`;
     });
   }
 }
 
-async function deletePostHandler(){
-    let postId = this.event.target.getAttribute("data-postId");
-    console.log(postId);
-    await fetch(`./Posts?postId=${postId}`, {method : "DELETE"});
-     updateCurrentForumPosts(
-          currentlySelectedForumTargetId,
-          currentlySelectedForumOption === 0
-        );
+async function deletePostHandler() {
+  let postId = this.event.target.getAttribute("data-postId");
+  console.log(postId);
+  await fetch(`./Posts?postId=${postId}`, { method: "DELETE" });
+  updateCurrentForumPosts(
+    currentlySelectedForumTargetId,
+    currentlySelectedForumOption === 0
+  );
 }
-
 
 async function updateMyForums() {
   myForumsList.innerHTML = "";
@@ -181,7 +184,7 @@ async function updateMyForums() {
       json = await mangaRes.json();
     }
 
-        console.log(json);
+    console.log(json);
     json = json.data;
     let option = forum.animeId === null ? 1 : 0;
     myForumListElementsAsArray.push(`
@@ -190,7 +193,9 @@ async function updateMyForums() {
           json.images.jpg.image_url
         }" style="width: auto; height: 90px;">
         <h4>${json.title}</h4>
-        <button class="openForumBtn" data-id="${json.mal_id}" data-option="${option}" ${
+        <button class="openForumBtn" data-id="${
+          json.mal_id
+        }" data-option="${option}" ${
       window.location.pathname.includes("forums")
         ? `onclick="myForumClickHandler()"`
         : ""
