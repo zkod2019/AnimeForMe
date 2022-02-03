@@ -26,6 +26,7 @@ public class News extends HttpServlet {
             Elements newsUnits = doc.body().getElementsByClass("news-list").first().select(".news-unit.clearfix.rect");
             
             String newsAsList = "[";
+            //for loop goes through each article container
             for (Element unit : newsUnits) {
                 log(unit.toString());
 
@@ -33,7 +34,7 @@ public class News extends HttpServlet {
                 String title = unit.getElementsByClass("title").first().text();
                 String excerpt = unit.getElementsByClass("text").first().text();
                 String url = unit.getElementsByTag("a").first().attr("href");
-                
+                // Get metadata from the container and convert it JSON obj
                 newsAsList += String.format(
                         "{\"imageUrl\": \"%s\", \"title\": \"%s\", \"excerpt\": \"%s\", \"url\": \"%s\"},",
                         imageUrl,

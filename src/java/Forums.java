@@ -19,6 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 public class Forums extends HttpServlet {
     private Connection conn;
     
+    /*
+    * Creates the database connection to be shared across methods like GET, PUT, etc.
+    * Database connection is created when the servlet is accessed, and destroyed
+    * when the request is resolved (done in destroy()).
+    */
     @Override
     public void init() throws ServletException {
         try {
@@ -47,6 +52,12 @@ public class Forums extends HttpServlet {
         PreparedStatement getForumsStatement = null;
         ResultSet getForumsRs = null;
         try {
+            
+            /* 
+            * targetId contains actual ID of the entity. But since ID can be repeated across entity groups,
+            * ex. animeId and mangaId can both be 1. We differentiate between them by using optionEnum, which
+            * is an enumeration where 0, 1 represents anime, manga
+            */
             getForumsStatement = conn.prepareStatement(
                     "SELECT * FROM ForumMembers WHERE username = (?) ORDER BY optionEnum, targetId"
             );

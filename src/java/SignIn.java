@@ -29,7 +29,7 @@ public class SignIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/plain;charset=UTF-8"); // this was had "text/plain" before
+        response.setContentType("text/plain;charset=UTF-8");
         
         String username = null;
         String password = null;
@@ -70,8 +70,9 @@ public class SignIn extends HttpServlet {
                     response.setStatus(404);
                     out.println("User Not Found.");
                 } else {
-                    rs.next();
+                    rs.next(); //Accesses the result
                     String databasepassword = rs.getString("password");
+                    //Password validation
                     if (password.equals(databasepassword)){
                         response.setStatus(200);
                         out.println("Password is Correct.");

@@ -50,6 +50,7 @@ public class Posts extends HttpServlet {
         ResultSet getPostsRs = null;
         
         try {
+            //GETs all posts from a forum from database
             getPostsStatement = conn.prepareStatement("SELECT * FROM Posts WHERE targetId = (?) AND optionEnum = (?)");
             getPostsStatement.setInt(1, targetId);
             getPostsStatement.setInt(2, option);

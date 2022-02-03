@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Zaya
  */
 public class ACM extends HttpServlet {
+    
+    //GET returns all the user's saved data by connecting to the database
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,6 +42,7 @@ public class ACM extends HttpServlet {
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
 
             getStatement = conn.prepareStatement(
+                    // This works because entity+id will always match the column for entityRelations's id
                     String.format("SELECT * FROM %srelation WHERE username = (?)", option),
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE
             );
@@ -46,8 +50,9 @@ public class ACM extends HttpServlet {
             getStatement.setString(1, username);
             userField = getStatement.executeQuery();
             
+            // The response is an array of obj. Each obj represets 1 entity that the user saved
             String results = "[";
-            boolean isEmpty =! userField.isBeforeFirst();
+            boolean isEmpty = !userField.isBeforeFirst();
             while (userField.next()) {
                 if (option.equals("characters")){
                     results += String.format(
@@ -223,11 +228,11 @@ public class ACM extends HttpServlet {
 
         try  {
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
-
+            
+            // Modifies status of anima and manga
             if (option.equals("manga")) {
                 log("manga option");
                 int mangaId = Integer.parseInt(request.getParameter("mangaId"));
-                
 
                 updateStatement = conn.prepareStatement("UPDATE mangarelation SET status=(?) WHERE username=(?) AND mangaId = (?) ");
                 updateStatement.setInt(1, Integer.parseInt(status));
@@ -240,7 +245,6 @@ public class ACM extends HttpServlet {
             }else if(option.equals("anime")) {
                 log("anime option");
                 int animeId = Integer.parseInt(request.getParameter("animeId"));
-                
 
                 updateStatement = conn.prepareStatement("UPDATE animerelation SET status=(?) WHERE username=(?) AND animeId = (?) ");
                 updateStatement.setInt(1, Integer.parseInt(status));

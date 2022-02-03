@@ -45,6 +45,7 @@ public class SignUpServlet extends HttpServlet {
         String username = null;
         String password = null;
         
+        //converts request buffer to string
         StringBuilder bodyBuffer = new StringBuilder();
         BufferedReader bodyReader = request.getReader();
            String line;
@@ -52,6 +53,8 @@ public class SignUpServlet extends HttpServlet {
             bodyBuffer.append(line);
         }
         String body = bodyBuffer.toString();
+        
+        // body is form-encoded, being key=value&key=value
         String[] pairs = body.split("&");
         for (String pair : pairs) {
             String[] splitPair = pair.split("=");
@@ -70,12 +73,14 @@ public class SignUpServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try {
                 conn = DriverManager.getConnection("jdbc:derby://localhost:1527/userjsf", "root", "userjsf");
+                // Checks if username already exists
                 existenceCheckStmt = conn.prepareStatement(
                         "SELECT * FROM Users WHERE username = (?)",
                         ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE
                 );
                 existenceCheckStmt.setString(1, username);
                 rs = existenceCheckStmt.executeQuery();
+                // isBeforeFirst() returns true if the resultset is not empty
                 if (!rs.isBeforeFirst()) {
                     // If did not find existing user
                     insertStmt = conn.prepareStatement(
@@ -88,7 +93,7 @@ public class SignUpServlet extends HttpServlet {
                     insertStmt.executeUpdate();
                     
                     response.setStatus(200);
-                    out.println("yoooo, new user pog");
+                    out.println("New User Created.");
                 } else {
                     response.setStatus(403);
                     out.println("Username is taken.");
